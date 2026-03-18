@@ -29,6 +29,11 @@
         .aurora-bg {
             background: radial-gradient(circle at 50% -20%, rgba(234, 88, 12, 0.15), rgba(2, 6, 23, 0));
         }
+        /* Force mobile browsers to lock horizontal scrolling */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 <body class="bg-[#020617] text-white antialiased overflow-x-hidden aurora-bg">
@@ -81,7 +86,7 @@
                     </span>
                     B.TECH AI & DS // VIPS
                 </div>
-                <h1 class="text-6xl md:text-8xl font-black uppercase italic leading-[0.9] mb-6">
+                <h1 class="text-5xl md:text-8xl font-black uppercase italic leading-[0.9] mb-6">
                     Decipher <br> The <span class="text-orange-500 orange-glow">Aether.</span>
                 </h1>
                 <p class="text-gray-400 text-lg mb-8 max-w-lg leading-relaxed">
