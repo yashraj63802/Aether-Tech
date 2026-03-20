@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/index.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        
+        <xhtml:link rel="alternate" hreflang="en-us" href="https://yashraj63802.github.io/Aether-Tech/index.html" />
+        <xhtml:link rel="alternate" hreflang="en-gb" href="https://yashraj63802.github.io/Aether-Tech/index.html" />
+        <xhtml:link rel="alternate" hreflang="en-in" href="https://yashraj63802.github.io/Aether-Tech/index.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://yashraj63802.github.io/Aether-Tech/index.html" />
+
+        <image:image>
+            <image:loc>https://i.ibb.co/WW5S09TJ/Untitled-design.jpg</image:loc>
+            <image:title>Aether Tech System Logo</image:title>
+            <image:caption>The official neural-interface logo of the Aether Tech Repository.</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1639322537228-f710d846310a</image:loc>
+            <image:title>Hero Logic Map</image:title>
+            <image:caption>Visualizing decentralized AI logic pathways on the Aether Tech Homepage.</image:caption>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/about.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yashraj63802.github.io/Aether-Tech/about.html" />
+        <image:image>
+            <image:loc>https://i.ibb.co/WW5S09TJ/Untitled-design.jpg</image:loc>
+            <image:title>Architect Profile Node</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/portfolio.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yashraj63802.github.io/Aether-Tech/portfolio.html" />
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/contact.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/sitemap.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/article-6.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://yashraj63802.github.io/Aether-Tech/article-6.html" />
+        
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1591815302525-756713cc9c37</image:loc>
+            <image:title>2nm Advanced Microchip Macro</image:title>
+            <image:caption>Ultra-close shot of an advanced 2nm microchip showing intricate circuitry and logic gates.</image:caption>
+        </image:image>
+
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1518770660439-4636190af475</image:loc>
+            <image:title>GAAFET Channel Architecture</image:title>
+            <image:caption>High-precision macro-photography of silicon pathways in a 2nm GAAFET core.</image:caption>
+        </image:image>
+
+        <video:video>
+            <video:thumbnail_loc>https://images.unsplash.com/photo-1550751827-4bd374c3f58b</video:thumbnail_loc>
+            <video:title>Manufacturing the 2nm Future: GAAFET Explained</video:title>
+            <video:description>A technical deep-dive into how 2nm silicon is manufactured using high-NA EUV lithography and stacked nanosheet transistors.</video:description>
+            <video:content_loc>https://www.youtube.com/watch?v=HiCEx1yh8Fs</video:content_loc>
+            <video:player_loc>https://www.youtube.com/embed/HiCEx1yh8Fs</video:player_loc>
+            <video:duration>720</video:duration>
+            <video:view_count>150000</video:view_count>
+            <video:publication_date>2026-01-15T00:00:00Z</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+
+        <video:video>
+            <video:thumbnail_loc>https://images.unsplash.com/photo-1518770660439-4636190af475</video:thumbnail_loc>
+            <video:title>Apple N2 vs Intel 18A: The 2nm Supremacy War</video:title>
+            <video:description>Benchmarking the titans of 2026 hardware. Comparing TSMC's N2 node against Intel's PowerVia 18A architecture.</video:description>
+            <video:content_loc>https://www.youtube.com/watch?v=dnKL7CaE3Hs</video:content_loc>
+            <video:player_loc>https://www.youtube.com/embed/dnKL7CaE3Hs</video:player_loc>
+            <video:duration>900</video:duration>
+            <video:publication_date>2026-03-01T00:00:00Z</video:publication_date>
+            <video:family_friendly>yes</video:family_friendly>
+        </video:video>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/article-5.html</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1518770660439-4636190af475</image:loc>
+            <image:title>SLM Neural Pathways</image:title>
+            <image:caption>Visualizing 7B parameter localized models on M-Series hardware.</image:caption>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/article-4.html</loc>
+        <lastmod>2026-03-15</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1677442136019-21780ecad995</image:loc>
+            <image:title>Agentic Loop Logic</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/article-3.html</loc>
+        <lastmod>2026-03-10</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1515879218367-8466d910aaa4</image:loc>
+            <image:title>Low Level Code Optimization</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/article-2.html</loc>
+        <lastmod>2026-03-05</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1550751827-4bd374c3f58b</image:loc>
+            <image:title>Hardware Edge ML</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/article-1.html</loc>
+        <lastmod>2026-02-28</lastmod>
+        <changefreq>never</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://images.unsplash.com/photo-1461749280684-dccba630e2f6</image:loc>
+            <image:title>Static Web Architecture</image:title>
+        </image:image>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/privacy.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://yashraj63802.github.io/Aether-Tech/terms.html</loc>
+        <lastmod>2026-03-20</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    </urlset>
