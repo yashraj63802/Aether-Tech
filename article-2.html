@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hardware Optimization for DS | Aether Tech</title>
     
-    <meta name="description" content="Technical analysis of Apple Silicon Unified Memory for high-performance Machine Learning. Optimized for B.Tech AI & DS students.">
+    <meta name="description" content="Technical deep-dive into optimizing Apple Silicon M-Series architecture for high-performance Machine Learning. Avoiding SSD degradation and maximizing MPS throughput.">
+    <meta name="keywords" content="Apple Silicon, M2 Pro, M3 Max, Machine Learning Hardware, Data Science Optimization, PyTorch MPS, Unified Memory Architecture, VIPS AI&DS">
     <meta name="author" content="Yash Raj Dwivedi">
-    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg">
     
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "TechArticle",
       "headline": "Hardware Optimization for Data Science: Apple Silicon Deep Dive",
-      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
       "author": {
         "@type": "Person",
-        "name": "Yash Raj Dwivedi"
+        "name": "Yash Raj Dwivedi",
+        "jobTitle": "AI & DS Student",
+        "affiliation": "VIPS"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Aether Tech"
       },
-      "datePublished": "2026-03-20"
+      "datePublished": "2026-03-20",
+      "mainEntityOfPage": "https://yashraj63802.github.io/Aether-Tech/article-2.html"
     }
     </script>
 
@@ -40,26 +43,28 @@
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #94a3b8; }
         
+        /* Advanced Visual Identity */
         .glass-nav { background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(20px); border-b: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .aurora-bg { background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.15), rgba(2, 6, 23, 1) 45%); }
         .orange-glow { text-shadow: 0 0 30px rgba(234, 88, 12, 0.5); }
         
-        /* Reading Progress */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ea580c; z-index: 1000; width: 0%; box-shadow: 0 0 15px #ea580c; }
+        /* Reading Progress Bar */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ea580c; z-index: 1000; width: 0%; box-shadow: 0 0 15px #ea580c; transition: width 0.1s ease-out; }
 
-        /* Typography Master Scale */
-        .article-body p { margin-bottom: 2.2rem; line-height: 1.9; font-size: 1.15rem; color: #cbd5e1; }
-        .article-body h2 { color: #ffffff; font-size: 2.5rem; font-weight: 800; margin-top: 5rem; margin-bottom: 2rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 4px solid #ea580c; padding-left: 1.5rem; }
-        .article-body h3 { color: #f8fafc; font-size: 1.6rem; font-weight: 700; margin-top: 3.5rem; margin-bottom: 1.5rem; }
-        .article-body blockquote { border-left: 4px solid #ea580c; background: rgba(234, 88, 12, 0.05); padding: 2.5rem; margin: 4rem 0; border-radius: 0 1rem 1rem 0; color: #e2e8f0; font-style: italic; font-size: 1.25rem; }
+        /* Typography & Layout */
+        .article-body p { margin-bottom: 2.2rem; line-height: 2; font-size: 1.15rem; color: #cbd5e1; }
+        .article-body h2 { color: #ffffff; font-size: 2.5rem; font-weight: 900; margin-top: 5rem; margin-bottom: 2rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 5px solid #ea580c; padding-left: 1.5rem; }
+        .article-body h3 { color: #f8fafc; font-size: 1.7rem; font-weight: 700; margin-top: 3.5rem; margin-bottom: 1.5rem; color: #ea580c; }
+        .article-body blockquote { border-left: 4px solid #ea580c; background: rgba(234, 88, 12, 0.05); padding: 2.5rem; margin: 4rem 0; border-radius: 0 1.5rem 1.5rem 0; color: #e2e8f0; font-style: italic; font-size: 1.3rem; }
         
-        .image-container { border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 30px 60px -15px rgba(0,0,0,0.8); margin: 4rem 0; }
-        .image-caption { text-align: center; color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: -3rem; margin-bottom: 4rem; font-weight: 600; }
+        .image-frame { border-radius: 2rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 80px -20px rgba(0,0,0,0.8); margin: 4rem 0; transition: transform 0.5s ease; }
+        .image-frame:hover { transform: translateY(-10px); }
+        .image-caption { text-align: center; color: #64748b; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; margin-top: -3rem; margin-bottom: 5rem; font-weight: 700; }
 
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: rgba(234, 88, 12, 0.5); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden aurora-bg">
@@ -69,136 +74,146 @@
     <nav class="fixed w-full z-50 px-6 py-4 glass-nav">
         <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
             <a href="index.html" class="flex items-center gap-3 group">
-                <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-lg object-cover border border-orange-500/30">
+                <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-lg object-cover border border-orange-500/30 group-hover:rotate-12 transition-transform">
                 <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
             </a>
-            <div class="hidden md:flex gap-10 text-[10px] font-black tracking-[0.2em] uppercase text-gray-400">
+            <div class="hidden md:flex gap-12 text-[10px] font-black tracking-[0.25em] uppercase text-gray-400">
                 <a href="index.html" class="hover:text-orange-500 transition">Neural Feed</a>
                 <a href="about.html" class="hover:text-white transition">Insights</a>
                 <a href="portfolio.html" class="hover:text-white transition">Portfolio</a>
             </div>
-            <a href="contact.html" class="hidden md:block bg-orange-600 hover:bg-orange-500 px-6 py-2 rounded-lg text-xs font-black uppercase tracking-widest text-white transition-all shadow-[0_0_20px_rgba(234,88,12,.4)]">Subscribe</a>
+            <a href="contact.html" class="hidden md:block bg-orange-600 hover:bg-orange-500 px-6 py-2 rounded-lg text-xs font-black uppercase tracking-widest text-white transition-all shadow-[0_0_25px_rgba(234,88,12,.4)]">Subscribe</a>
             <button id="mobile-menu-btn" class="md:hidden text-orange-500"><i data-lucide="menu"></i></button>
         </div>
     </nav>
 
-    <header class="relative pt-48 pb-20 px-6 lg:pt-64 lg:pb-32 border-b border-gray-900 overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-30 scale-110">
-            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=2000" alt="Hardware" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] to-transparent"></div>
+    <header class="relative pt-48 pb-24 px-6 lg:pt-64 lg:pb-40 border-b border-gray-900 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2000" alt="Hardware Silicon Architecture" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/50 to-transparent"></div>
         </div>
 
-        <div class="max-w-4xl mx-auto relative z-10 hero-anim">
-            <div class="flex flex-wrap items-center gap-6 mb-8">
-                <span class="px-4 py-1.5 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-[10px] font-black tracking-widest uppercase">Hardware Thesis // 002</span>
-                <span class="text-gray-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2"><i data-lucide="calendar" class="w-3 h-3"></i> March 26, 2026</span>
-                <span class="text-green-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2"><i data-lucide="check-circle" class="w-3 h-3"></i> Verified Content</span>
+        <div class="max-w-5xl mx-auto relative z-10 hero-anim">
+            <div class="flex flex-wrap items-center gap-6 mb-10">
+                <span class="px-5 py-2 rounded-full border border-orange-500/40 bg-orange-500/15 text-orange-400 text-[10px] font-black tracking-[0.2em] uppercase">Hardware Log // 002</span>
+                <span class="text-gray-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> March 26, 2026</span>
+                <span class="text-green-500 text-xs font-bold uppercase tracking-widest flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4"></i> System Active</span>
             </div>
-            <h1 class="text-6xl md:text-8xl font-black uppercase italic leading-[0.9] text-white mb-8 tracking-tighter">Hardware <br> <span class="text-orange-500 orange-glow">Optimization.</span></h1>
-            <p class="text-2xl text-gray-400 max-w-2xl leading-relaxed font-light italic border-l-4 border-orange-500 pl-6">Deconstructing the M-Series Unified Memory Architecture for high-performance Machine Learning training.</p>
+            <h1 class="text-6xl md:text-8xl font-black uppercase italic leading-[0.85] text-white mb-10 tracking-tighter">Hardware <br> <span class="text-orange-500 orange-glow">Optimization.</span></h1>
+            <p class="text-2xl text-gray-400 max-w-2xl leading-relaxed font-light italic border-l-4 border-orange-500 pl-8 bg-white/5 py-4">Deconstructing the M-Series Unified Memory Architecture for high-performance Machine Learning training on local silicon.</p>
         </div>
     </header>
 
     <main class="max-w-[100rem] mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
         
         <aside class="hidden lg:block lg:col-span-3">
-            <div class="sticky top-32 glass-card p-8 rounded-3xl sidebar-anim">
-                <h4 class="text-xs font-black uppercase tracking-[0.3em] text-white mb-8 border-b border-gray-800 pb-4">Architecture Index</h4>
-                <nav class="space-y-6 text-[11px] font-bold uppercase tracking-widest">
-                    <a href="#unified" class="block text-orange-500 hover:tracking-widest transition-all">01 // Unified Memory</a>
-                    <a href="#swap" class="block text-gray-500 hover:text-white transition-all">02 // SSD Swap Risk</a>
-                    <a href="#mps" class="block text-gray-500 hover:text-white transition-all">03 // Metal Backend (MPS)</a>
-                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">04 // Final Verdict</a>
+            <div class="sticky top-32 glass-card p-10 rounded-[2.5rem] sidebar-anim">
+                <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-10 border-b border-gray-800 pb-6">Architecture Index</h4>
+                <nav class="space-y-8 text-[11px] font-black uppercase tracking-[0.2em]">
+                    <a href="#prologue" class="block text-orange-500 hover:pl-2 transition-all">0.0 // The Thesis</a>
+                    <a href="#unified" class="block text-gray-500 hover:text-white transition-all">1.0 // Unified Memory</a>
+                    <a href="#swap" class="block text-gray-500 hover:text-white transition-all">2.0 // NAND Degradation</a>
+                    <a href="#mps" class="block text-gray-500 hover:text-white transition-all">3.0 // Metal Backend</a>
+                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">4.0 // Scale Locally</a>
                 </nav>
 
-                <div class="mt-16 pt-8 border-t border-gray-800">
-                    <p class="text-[10px] font-black tracking-widest text-gray-600 uppercase mb-6">Connect Transmission</p>
-                    <div class="flex gap-4">
-                        <a href="https://github.com/yashraj63802" target="_blank" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-gray-400 hover:text-orange-500 transition-all"><i data-lucide="github" class="w-5 h-5"></i></a>
-                        <a href="https://linkedin.com" target="_blank" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-gray-400 hover:text-blue-500 transition-all"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <div class="mt-20 pt-10 border-t border-gray-900">
+                    <p class="text-[9px] font-black tracking-widest text-gray-600 uppercase mb-8">External Nodes</p>
+                    <div class="flex gap-6">
+                        <a href="https://github.com/yashraj63802" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-400 hover:text-orange-500 hover:scale-110 transition-all"><i data-lucide="github" class="w-6 h-6"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-400 hover:text-blue-500 hover:scale-110 transition-all"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
                     </div>
                 </div>
             </div>
         </aside>
 
-        <article class="lg:col-span-6 article-body content-anim">
-            <p><span class="text-orange-500 font-bold text-5xl float-left mr-4 leading-none mt-2">D</span>ata Science is a resource-intensive field. For engineering students at VIPS, the cost of cloud computing on AWS or Google Cloud can quickly become a bottleneck. However, if you are using an Apple Silicon MacBook Pro, you have a mini-supercomputer at your fingertips.</p>
+        <article id="prologue" class="lg:col-span-6 article-body content-anim scroll-mt-32">
+            <p><span class="text-orange-500 font-bold text-6xl float-left mr-5 leading-none mt-2">D</span>ata Science is a resource-intensive field. As a student pursuing a B.Tech in AI & DS at VIPS, the assumption is often that the "Cloud" is the only place for serious training. However, the cost of an AWS P3 instance can quickly drain a student's budget. This brings us to local compute—specifically the Apple Silicon SoC.</p>
 
-            <p>But there is a catch: if you treat your Mac like a standard PC, you are wasting 70% of its potential. To truly master local AI training, you must understand how to optimize the silicon itself.</p>
+            <p>If you own a MacBook Pro equipped with M-series silicon, you are sitting on a mini-supercomputer. But if you treat your Mac like a standard PC, you are wasting 70% of its potential. To truly master local AI training, we must go beneath the surface of macOS.</p>
 
-            <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1591815302525-756713cc9c37?auto=format&fit=crop&q=80&w=1200" alt="Apple Silicon Tech" class="w-full">
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1200" alt="Apple Hardware Setup" class="w-full">
             </div>
-            <p class="image-caption">Fig 1. High-bandwidth data pipelines within modern SoC architecture.</p>
+            <p class="image-caption">Fig 1. Minimalist high-performance workspace utilized for model prototyping.</p>
 
-            <h2 id="unified">The Unified Memory Advantage</h2>
-            <p>Traditional computers have two separate memory pools: System RAM for the CPU and Video RAM (VRAM) for the GPU. Data has to be copied between them constantly, creating a delay. Apple Silicon uses <strong>Unified Memory Architecture (UMA)</strong>.</p>
-            <p>Because the CPU and GPU share the same memory, your GPU can access massive datasets without any copying overhead. This allows a 16GB Mac to often outperform dedicated PC GPUs in specific training tasks.</p>
+            <h2 id="unified">1.0 // The Unified Memory Advantage</h2>
+            <p>Standard PC architecture separates System RAM from Video RAM (VRAM). This requires data to be copied over the PCIe bus, creating a massive latency bottleneck. Apple Silicon’s <strong>Unified Memory Architecture (UMA)</strong> removes this entirely.</p>
+            <p>On your Mac, the GPU reads from the exact same physical memory address the CPU just wrote to. This allows you to load massive datasets (up to the limit of your total RAM) into the GPU for training—something impossible on consumer-grade PCs.</p>
 
             <blockquote>
-                "UMA isn't just about speed; it's about accessibility. It allows for training batch sizes that would normally crash a standard consumer GPU."
+                "Unified memory is the 'cheat code' for modern AI research. It turns a laptop into a data center node."
             </blockquote>
 
-            <h2 id="swap">The Danger of SSD Swap</h2>
-            <p>If you load a 20GB dataset into a 16GB Mac, macOS uses your SSD as "overflow" RAM. This is called <strong>Swap</strong>. While this prevents your Mac from crashing, machine learning writes millions of tiny data points per second. This can permanently degrade your SSD’s physical health in just a few months of heavy training.</p>
+            <h2 id="swap">2.0 // The Danger of SSD Swap</h2>
+            <p>But there is a fatal flaw: <strong>Swap.</strong> If your dataset exceeds your physical memory, macOS uses your SSD as "overflow" RAM. Machine learning requires millions of read/write operations per minute. Processing a 50GB Parquet file on a 16GB Mac without optimization will physically degrade your SSD’s life in months.</p>
 
-            <h3>How to Prevent NAND Fatigue:</h3>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1591799264318-7e698ddb7c1d?auto=format&fit=crop&q=80&w=1200" alt="Data Streams" class="w-full">
+            </div>
+            <p class="image-caption">Fig 2. Managing high-bandwidth data streams within hardware limits.</p>
+
+            <h3>Mitigation Strategies:</h3>
             <ul>
-                <li><strong>Dynamic Dataloading:</strong> Never use <code>df.read_csv()</code> on a 10GB file. Use PyTorch <code>DataLoaders</code> to stream data in small chunks.</li>
-                <li><strong>Terminal Monitoring:</strong> Keep your terminal open with the command <code>top -o mem</code> to ensure your "Swap Used" stays below 1GB.</li>
+                <li><strong>Lazy Loading:</strong> Never use <code>read_csv()</code> on files over 2GB. Use PyTorch <code>DataLoaders</code> to stream data in batches.</li>
+                <li><strong>Hardware Auditing:</strong> Keep a terminal open with <code>top -o mem</code> to ensure "Swap Used" stays below 1GB at all times.</li>
             </ul>
 
-            <div class="my-16 rounded-3xl overflow-hidden border border-gray-800 shadow-2xl bg-black group">
+            <div class="my-20 rounded-[2.5rem] overflow-hidden border border-gray-800 shadow-3xl bg-black group">
                 <div class="aspect-video w-full relative">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/n4Q1Z_m69Yc" title="Apple Silicon ML" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/n4Q1Z_m69Yc" title="Apple Silicon ML Breakdown" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="bg-[#0f172a] px-6 py-4 border-t border-gray-800 flex items-center justify-between">
-                    <span class="text-[10px] text-orange-500 font-black tracking-widest uppercase flex items-center gap-2"><i data-lucide="play-circle" class="w-4 h-4"></i> System Log // Video</span>
+                <div class="bg-[#0f172a] px-8 py-5 border-t border-gray-800 flex items-center justify-between">
+                    <span class="text-[10px] text-orange-500 font-black tracking-[0.4em] uppercase flex items-center gap-3"><i data-lucide="play-circle" class="w-5 h-5"></i> System_Log // 02</span>
                     <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase italic">Neural Engine Deep Dive</span>
                 </div>
             </div>
 
-            <h2 id="mps">Metal Performance Shaders (MPS)</h2>
-            <p>Most code online uses <code>device = 'cuda'</code>. On a Mac, this defaults your training to the CPU, which is 10x slower. To activate your GPU cores, you must use the **MPS Backend**.</p>
+            <h2 id="mps">3.0 // The Metal Backend (MPS)</h2>
+            <p>Standard ML code is written for Nvidia GPUs (CUDA). On a Mac, this defaults to the CPU, which is agonizingly slow. To unlock your silicon's power, you must utilize the <strong>Metal Performance Shaders (MPS)</strong> backend.</p>
 
-            <div class="my-12 rounded-2xl overflow-hidden border border-gray-800 shadow-2xl">
-<pre class="!m-0 !bg-[#020617] !p-8"><code class="language-python">import torch
+            <div class="my-12 rounded-3xl overflow-hidden border border-gray-800 shadow-2xl">
+                <div class="bg-[#0f172a] px-6 py-4 border-b border-gray-800 flex items-center gap-3">
+                    <div class="flex gap-2"><div class="w-3 h-3 rounded-full bg-red-500/40"></div><div class="w-3 h-3 rounded-full bg-yellow-500/40"></div><div class="w-3 h-3 rounded-full bg-green-500/40"></div></div>
+                    <span class="text-[10px] text-gray-500 font-black tracking-widest uppercase ml-4">hardware_bridge.py</span>
+                </div>
+<pre class="!m-0 !bg-[#020617] !p-10"><code class="language-python">import torch
 
-# EXPLICIT APPLE SILICON ROUTING
+# INITIALIZING APPLE SILICON ROUTING
 if torch.backends.mps.is_available():
     device = torch.device("mps")
-    print(">> Transmission: Metal GPU Core Active.")
+    print(">> Transmission: Metal GPU Core Online.")
 else:
     device = torch.device("cpu")
-    print(">> Warning: Falling back to CPU.")
+    print(">> Warning: Unaccelerated CPU routing.")
 
-# Move your AI model to the silicon cores
+# Send tensors to the silicon cores
 model.to(device)</code></pre>
             </div>
 
-            <h2 id="conclusion">Final Verdict</h2>
-            <p>Your MacBook Pro is the ultimate sandbox for AI and Data Science. By respecting its hardware limits and using the Metal backend, you can build, train, and validate complex models without spending a single rupee on cloud servers.</p>
+            <h2 id="conclusion">4.0 // Scale Locally</h2>
+            <p>Your MacBook Pro is a professional-grade development node. By respecting physical memory limits and explicitly routing to the Metal backend, you can prototype complex models without the overhead of cloud latency or cost. Mastery of your hardware is the first step toward mastery of the machine.</p>
 
-            <div class="mt-24 pt-12 border-t border-gray-900">
-                <div class="glass-card p-10 rounded-[3rem] flex flex-col sm:flex-row items-center gap-10">
-                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Author" class="w-28 h-28 rounded-3xl border-2 border-orange-500/30 object-cover rotate-2 shadow-2xl">
+            <div class="mt-24 pt-16 border-t border-gray-900">
+                <div class="glass-card p-12 rounded-[3.5rem] flex flex-col sm:flex-row items-center gap-12 group">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Author" class="w-32 h-32 rounded-[2rem] border-2 border-orange-500/30 object-cover rotate-3 group-hover:rotate-0 transition-transform duration-500 shadow-2xl">
                     <div class="text-center sm:text-left">
-                        <h4 class="text-white font-black text-3xl uppercase italic tracking-tighter">Yash Raj <span class="text-orange-500">Dwivedi</span></h4>
-                        <p class="text-xs font-black tracking-[0.3em] text-orange-400 uppercase mb-4 mt-1">B.Tech AI & DS // VIPS</p>
-                        <p class="text-sm text-gray-400 font-light leading-relaxed">Frontend architect and data science student exploring high-performance silicon deployment. Currently building the AetherTech ecosystem.</p>
+                        <h4 class="text-white font-black text-4xl uppercase italic tracking-tighter">Yash Raj <span class="text-orange-500">Dwivedi</span></h4>
+                        <p class="text-xs font-black tracking-[0.4em] text-orange-400 uppercase mb-5 mt-2">B.Tech AI & DS // VIPS</p>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">Frontend architect and data science student. Building AetherTech to explore the limits of silicon-level intelligence.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-20 pt-16 border-t border-gray-900">
-                <h3 class="text-2xl font-black text-white mb-10 flex items-center gap-4"><i data-lucide="message-square" class="text-orange-500"></i> Community Logs (2)</h3>
-                <div class="space-y-8">
-                    <div class="glass-card p-8 rounded-3xl">
-                        <div class="flex items-center gap-4 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center font-bold text-white uppercase text-xs">SD</div>
-                            <div><p class="text-white font-bold text-sm">Sarah Dev</p><p class="text-[10px] font-bold text-gray-600 uppercase">March 27, 2026</p></div>
+            <div class="mt-24 pt-20 border-t border-gray-900">
+                <h3 class="text-3xl font-black text-white mb-12 flex items-center gap-5 tracking-tighter"><i data-lucide="message-square" class="text-orange-500 w-8 h-8"></i> Community Logs (2)</h3>
+                <div class="space-y-10">
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-600 flex items-center justify-center font-black text-white text-xs">SD</div>
+                            <div><p class="text-white font-bold text-base">Sarah Dev</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 27, 2026</p></div>
                         </div>
-                        <p class="text-gray-400 text-sm">This code snippet literally saved my M2 Pro. I was training a CNN on CPU for two days before finding the MPS backend!</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">"The MPS routing snippet cut my training time on an M3 Pro by 60%. Essential knowledge for anyone switching from Windows setups."</p>
                     </div>
                 </div>
             </div>
@@ -207,34 +222,34 @@ model.to(device)</code></pre>
         <aside class="hidden lg:block lg:col-span-3"></aside>
     </main>
 
-    <footer class="py-20 border-t border-gray-900 px-6 bg-[#020617]">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+    <footer class="py-24 border-t border-gray-900 px-6 bg-[#020617]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-20">
             <div class="col-span-1">
-                <div class="flex items-center gap-3 mb-6">
-                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-8 h-8 rounded-lg grayscale">
-                    <span class="text-lg font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+                <div class="flex items-center gap-4 mb-10">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-xl grayscale group-hover:grayscale-0 transition-all">
+                    <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
                 </div>
-                <p class="text-gray-600 text-[10px] uppercase font-black tracking-widest leading-loose">Decipher the Aether. <br> Built by Yash Raj Dwivedi.</p>
+                <p class="text-gray-600 text-[10px] font-black uppercase tracking-[0.3em] leading-loose">Decipher the Aether. <br> System Stable // 2026.</p>
             </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-white">Transmissions</h5>
-                <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Transmissions</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
                     <a href="article-1.html" class="hover:text-orange-500 transition">GitHub Pages</a>
                     <a href="article-2.html" class="text-orange-500">Hardware DS</a>
                     <a href="article-3.html" class="hover:text-orange-500 transition">C in AI</a>
                 </div>
             </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-white">Legal</h5>
-                <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Registry</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
                     <a href="privacy.html" class="hover:text-white transition">Privacy</a>
                     <a href="terms.html" class="hover:text-white transition">Terms</a>
                     <a href="sitemap.html" class="hover:text-white transition">Sitemap</a>
                 </div>
             </div>
-            <div class="space-y-6">
-                <h5 class="text-[10px] font-black uppercase tracking-[0.3em] text-white">System</h5>
-                <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-widest text-gray-500">
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">System</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
                     <a href="contact.html" class="hover:text-white transition">Contact Portal</a>
                     <a href="index.html" class="hover:text-white transition">Core Feed</a>
                 </div>
@@ -246,7 +261,7 @@ model.to(device)</code></pre>
         lucide.createIcons();
         gsap.registerPlugin(ScrollTrigger);
 
-        // Progress Bar
+        // Dynamic Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -254,10 +269,10 @@ model.to(device)</code></pre>
             document.getElementById('progress-bar').style.width = scrolled + '%';
         });
 
-        // Reveal
-        gsap.from(".hero-anim", { opacity: 0, y: 50, duration: 1.5, ease: "power4.out" });
-        gsap.from(".sidebar-anim", { opacity: 0, x: -50, duration: 1.2, delay: 0.5, ease: "power4.out" });
-        gsap.from(".content-anim", { opacity: 0, y: 80, duration: 1.2, delay: 0.8, ease: "power4.out" });
+        // Cinematic Animations
+        gsap.from(".hero-anim", { opacity: 0, y: 100, duration: 2, ease: "expo.out" });
+        gsap.from(".sidebar-anim", { opacity: 0, x: -80, duration: 1.5, delay: 0.8, ease: "power4.out" });
+        gsap.from(".content-anim", { opacity: 0, y: 120, duration: 1.5, delay: 1, ease: "power4.out" });
     </script>
 </body>
 </html>
