@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" style="background-color: #020617 !important;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple N2 vs Intel 18A: The 2nm Supremacy | Aether Tech</title>
+    
+    <meta name="description" content="Transmission 006: The definitive comparison of Apple's N2 node and Intel's 18A architecture. Analyzing GAAFET, RibbonFET, and PowerVia benchmarks in 2026.">
+    <meta name="keywords" content="Apple N2 vs Intel 18A, 2nm chip efficiency, GAAFET architecture, PowerVia technology, Moore's Law 2026, Technical Architecture, Aether Tech">
+    <meta name="author" content="Yash Raj Dwivedi">
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        /* v9.2 BRAND COLOR SYSTEM 
+           - PRIMARY: #ea580c (Electric Orange)
+           - VOID: #020617 (Deep Obsidian)
+           - DEPTH: #080e1e (Midnight Navy)
+           - SURFACE: #0f172a (Technical Slate)
+        */
+
+        :root {
+            --obsidian: #020617;
+            --midnight: #080e1e;
+            --technical-slate: #0f172a;
+            --accent: #ea580c;
+            --accent-glow: rgba(234, 88, 12, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        html, body {
+            background-color: var(--obsidian) !important;
+            color: #f1f5f9;
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Kinetic Background Node */
+        .aurora-master { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.1), var(--obsidian) 1200px); 
+            z-index: -1;
+        }
+
+        .glass-nav { 
+            background: rgba(2, 6, 23, 0.95); 
+            backdrop-filter: blur(25px); 
+            border-bottom: 1px solid var(--glass-border); 
+            z-index: 1000;
+        }
+
+        #progress-bar { 
+            position: fixed; top: 0; left: 0; height: 5px; 
+            background: var(--accent); z-index: 1100; width: 0%; 
+            box-shadow: 0 0 30px var(--accent);
+        }
+
+        /* Editorial Typography Engine */
+        .article-body p { margin-bottom: 3.5rem; line-height: 2.3; font-size: 1.45rem; color: #cbd5e1; font-weight: 400; }
+        .article-body h2 { color: #ffffff; font-size: 4rem; font-weight: 900; margin-top: 10rem; margin-bottom: 4rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 15px solid var(--accent); padding-left: 3.5rem; background: linear-gradient(90deg, rgba(234, 88, 12, 0.08), transparent); }
+        .article-body h3 { color: #f8fafc; font-size: 2.8rem; font-weight: 700; margin-top: 8rem; margin-bottom: 2.5rem; color: var(--accent); }
+        .article-body blockquote { border-left: 12px solid var(--accent); background: rgba(255, 255, 255, 0.03); padding: 5rem; margin: 9rem 0; border-radius: 0 4rem 4rem 0; color: #ffffff; font-style: italic; font-size: 2.2rem; line-height: 1.9; position: relative; }
+        .drop-cap { float: left; font-size: 11rem; line-height: 0.8; font-weight: 900; color: var(--accent); margin-right: 2.5rem; margin-top: 0.8rem; text-transform: uppercase; font-style: italic; text-shadow: 10px 10px 0px rgba(0,0,0,0.6); }
+
+        /* 3D Kinetic Pop Mechanics */
+        .pop-container { 
+            border-radius: 4.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 100px 250px -50px rgba(0,0,0,1); margin: 12rem 0; 
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            transform-style: preserve-3d;
+            background: var(--technical-slate);
+        }
+        .pop-container:hover { transform: scale(1.03) translateZ(120px); border-color: var(--accent); box-shadow: 0 120px 300px -60px rgba(0,0,0,1), 0 0 50px -10px var(--accent-glow); }
+        
+        .image-caption { text-align: center; color: #64748b; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.6em; margin-top: -9rem; margin-bottom: 14rem; font-weight: 900; }
+
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--obsidian); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 20px; }
+
+        /* Navigation Node Animations */
+        .nav-node { transition: all 0.4s ease; }
+        .nav-node:hover { color: var(--accent); transform: translateX(10px); }
+        
+        footer a { transition: color 0.3s ease, padding 0.3s ease; }
+        footer a:hover { color: #fff; padding-left: 8px; border-left: 2px solid var(--accent); }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="aurora-master"></div>
+    <div id="progress-bar"></div>
+
+    <nav class="fixed w-full px-10 py-10 glass-nav">
+        <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-5 group">
+                <div class="w-14 h-14 rounded-2xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/80 transition-all duration-700 shadow-2xl">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="text-4xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+            </a>
+            
+            <div class="hidden lg:flex gap-16 text-[12px] font-black tracking-[0.6em] uppercase text-gray-500">
+                <a href="index.html" class="text-orange-500 hover:text-white transition-all hover:tracking-[0.8em]">Neural Feed</a>
+                <a href="about.html" class="hover:text-white transition-all hover:tracking-[0.8em]">Insights</a>
+                <a href="portfolio.html" class="hover:text-white transition-all hover:tracking-[0.8em]">Portfolio</a>
+            </div>
+
+            <button class="hidden md:block bg-orange-600 px-12 py-5 rounded-3xl text-[11px] font-black uppercase text-white shadow-3xl hover:scale-110 transition-all">Secure Transmit</button>
+        </div>
+    </nav>
+
+    <header class="relative pt-80 pb-48 px-10 overflow-hidden border-b border-white/5">
+        <div class="absolute inset-0 z-0 opacity-40 scale-110">
+            <img src="https://images.unsplash.com/photo-1591815302525-756713cc9c37?auto=format&fit=crop&q=80&w=2000" alt="2nm Advanced Microchip" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto relative z-10 hero-reveal">
+            <div class="flex flex-wrap items-center gap-8 mb-16">
+                <span class="px-10 py-3 rounded-full border border-orange-500/40 bg-orange-500/15 text-orange-400 text-[12px] font-black tracking-[0.6em] uppercase">Transmission // 006</span>
+                <span class="text-gray-500 text-[12px] font-black uppercase tracking-widest flex items-center gap-3"><i data-lucide="cpu" class="w-6 h-6 text-orange-500"></i> Atom-Thick Lithography</span>
+            </div>
+            <h1 class="text-7xl md:text-[12.5rem] font-black uppercase italic leading-[0.8] text-white mb-16 tracking-tighter">Apple N2 <br> vs <span class="text-orange-500 orange-glow">Intel 18A.</span></h1>
+            <p class="text-3xl md:text-5xl text-gray-400 max-w-6xl leading-tight font-light italic border-l-8 border-orange-500 pl-16 py-10 bg-white/[0.01]">A definitive technical showdown of the 2nm supremacy: Analyzing why 2026 represents the final commercial frontier of the silicon revolution.</p>
+        </div>
+    </header>
+
+    <main class="max-w-[110rem] mx-auto px-10 py-60 grid lg:grid-cols-12 gap-32 relative">
+        
+        <aside class="hidden lg:block lg:col-span-3">
+            <div class="sticky top-48 glass-card p-16 rounded-[4rem] sidebar-reveal">
+                <h4 class="text-[12px] font-black uppercase tracking-[0.8em] text-white mb-16 border-b border-white/5 pb-10">Analysis Nodes</h4>
+                <nav class="space-y-16 text-[12px] font-black uppercase tracking-[0.5em]">
+                    <a href="#prologue" class="block text-orange-500 hover:pl-3 transition-all">0.0 // The Atomic Wall</a>
+                    <a href="#gaafet" class="block text-gray-500 hover:text-white transition-all">1.0 // GAAFET Masterwork</a>
+                    <a href="#powervia" class="block text-gray-500 hover:text-white transition-all">2.0 // Backside Power</a>
+                    <a href="#benchmarks" class="block text-gray-500 hover:text-white transition-all">3.0 // Efficiency War</a>
+                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">4.0 // Local Sovereignty</a>
+                </nav>
+                <div class="mt-40 pt-16 border-t border-white/5">
+                    <p class="text-[10px] font-black tracking-widest text-gray-700 uppercase mb-10 italic">Core Node Status</p>
+                    <div class="flex items-center gap-5 text-green-500 mono font-bold uppercase text-[10px]">
+                        <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span> Node Synced // 2nm
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article id="prologue" class="lg:col-span-6 article-body content-reveal scroll-mt-48">
+            <p><span class="drop-cap">W</span>e have officially reached the physical threshold of the universe. In 2026, the global technical discourse has moved beyond "more cores" and "faster clocks." It has become a fundamental struggle for the space between atoms. For the last fifteen years, the digital revolution was fueled by FinFET (Fin Field-Effect Transistor) architecture—a design that allowed us to scale down to 3 nanometers. However, as we moved toward the 2nm mark, the laws of classical physics began to dissolve, replaced by the chaotic interference of quantum mechanics.</p>
+
+            <p>The 2nm frontier represents the most significant manufacturing reboot since the invention of the integrated circuit. As transistors shrink to the width of a few silicon atoms, electrons begin to "tunnel" through traditional gates, creating massive thermal leakage and rendering old designs obsolete. To survive this impasse, the industry has fractured into two distinct architectural philosophies: Apple’s refinement of nanosheets via TSMC’s N2 node, and Intel’s high-risk gamble on the 18A PowerVia architecture. This transmission deconstructs the hardware supremacy that will define local intelligence for the next decade.</p>
+
+            <div id="gaafet" class="scroll-mt-48">
+                <h2>1.0 // Apple N2: The GAAFET Masterwork</h2>
+                <p>Apple’s N2 node, produced exclusively by TSMC, focuses on the absolute perfection of the **Gate-All-Around (GAAFET)** transistor. In this design, the gate doesn't just sit on top of the channel; it completely encircles it on all four sides. This provides the total electrostatic control required to keep electrons in their lanes at the sub-atomic level. For the upcoming M5 Pro, this architecture delivers a 35% performance-per-watt increase, enabling the chip to run a 100B parameter model locally with zero thermal throttling.</p>
+                
+                <div class="pop-container">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600" alt="2nm Pin Macro" class="w-full h-full object-cover">
+                </div>
+                <p class="image-caption">Fig 1. Electron microscopy of the GAAFET channel stack at 2nm resolution.</p>
+            </div>
+
+            <blockquote>
+                "Efficiency is the only metric that matters in 2026. If you cannot manage the movement of electrons at the 2nm scale, you cannot build a localized agent."
+            </blockquote>
+
+            <div class="my-32 rounded-[4.5rem] overflow-hidden border border-white/5 shadow-3xl bg-black group">
+                <div class="aspect-video w-full relative">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/HiCEx1yh8Fs" title="Manufacturing the 2nm Future" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="p-12 bg-[#0b1120] flex justify-between items-center border-t border-white/5">
+                    <span class="text-[12px] text-orange-500 font-black uppercase tracking-[0.6em]">System_Analysis // Node 01</span>
+                    <a href="https://www.youtube.com/watch?v=HiCEx1yh8Fs" target="_blank" class="text-[12px] text-gray-500 font-bold uppercase hover:text-white transition-all">Full Video Stream →</a>
+                </div>
+            </div>
+
+            <div id="powervia" class="scroll-mt-48">
+                <h2>2.0 // Intel 18A: The PowerVia Revolution</h2>
+                <p>Intel’s 18A node (1.8nm) is the first radical departure from 50 years of planar history. Their secret weapon is **PowerVia**. Traditionally, both data signals and power were routed through the same congested layers on top of the silicon, leading to massive heat and signal noise. Intel has moved the entire power delivery network to the *back* of the wafer. By separating power from data, Intel 18A achieves 5.2GHz clock speeds on a mobile envelope—a feat once considered impossible without liquid nitrogen cooling.</p>
+                
+                <div class="pop-container">
+                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80&w=1600" alt="Intel 18A Architecture" class="w-full h-full object-cover">
+                </div>
+                <p class="image-caption">Fig 2. Visualizing the backside power routing matrix of the Intel 18A node.</p>
+            </div>
+
+            <div id="benchmarks" class="scroll-mt-48">
+                <h2>3.0 // The 2026 Efficiency War</h2>
+                <p>Initial benchmarks for production-level 2nm chips indicate a radical shift in how we measure value. When running Small Language Models (SLMs) like Phi-4 or Llama-3-8B locally, the N2 node maintains a slight lead in "Idle Intelligence" efficiency, while the 18A node wins in "Burst Throughput." For a technical architect, this means the Apple M5 Pro is the king of the "Always-On Agent," whereas Intel's 18A is the beast of "Local Data Heavy-Lifting." Both chips are breaking the 100 Tokens Per Second (TPS) barrier, finally decoupling high-end intelligence from the cloud for professional DS workflows.</p>
+            </div>
+
+            <div class="my-32 rounded-[4.5rem] overflow-hidden border border-white/5 shadow-3xl bg-black group">
+                <div class="aspect-video w-full relative">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/dnKL7CaE3Hs" title="The Silicon Battle" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="p-12 bg-[#0b1120] flex justify-between items-center border-t border-white/5">
+                    <span class="text-[12px] text-orange-500 font-black uppercase tracking-[0.6em]">Comparative_Log // Node 02</span>
+                    <a href="https://www.youtube.com/watch?v=dnKL7CaE3Hs" target="_blank" class="text-[12px] text-gray-500 font-bold uppercase hover:text-white transition-all">Full Video Stream →</a>
+                </div>
+            </div>
+
+            <div id="conclusion" class="scroll-mt-48">
+                <h2>4.0 // Peak Silicon & Local Sovereignty</h2>
+                <p>The 2nm node is likely the final commercially viable stop for pure silicon logic. Beyond this, the industry must pivot to exotic materials like Carbon Nanotubes or Optical Interconnects. But for 2026, the winner of this war is the end-user. We have finally achieved **Digital Sovereignty**—owning hardware powerful enough to host world-class intelligence without a single cloud-API handshake. Decipher the Aether. System Stable // 2026.</p>
+            </div>
+
+            <div class="mt-60 pt-32 border-t border-white/5">
+                <div class="glass-card p-16 rounded-[5rem] flex flex-col md:flex-row items-center gap-16 group">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" class="w-56 h-56 rounded-[4rem] border-4 border-orange-500/20 shadow-3xl grayscale group-hover:grayscale-0 transition-all duration-1000 rotate-3 group-hover:rotate-0">
+                    <div>
+                        <h4 class="text-white text-6xl font-black italic uppercase tracking-tighter mb-6">Yash Raj Dwivedi.</h4>
+                        <p class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em] mb-10">Lead Technical Architect // Global Node 01</p>
+                        <p class="text-xl text-gray-400 font-light leading-relaxed italic max-w-xl">Analyzing the convergence of molecular-scale hardware engineering and decentralized artificial intelligence ecosystems at VIPS AI & DS.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-40 pt-32 border-t border-white/5">
+                <h3 class="text-5xl font-black text-white mb-20 flex items-center gap-8 tracking-tighter italic underline decoration-orange-500/50"><i data-lucide="message-square" class="text-orange-500 w-12 h-12"></i> Community Logs (3)</h3>
+                <div class="space-y-16">
+                    <div class="glass-card p-14 rounded-[4rem] pop-container m-0">
+                        <div class="flex items-center gap-8 mb-10">
+                            <div class="w-16 h-16 rounded-3xl bg-indigo-600 flex items-center justify-center font-black text-white text-sm shadow-2xl">LT</div>
+                            <div><p class="text-white font-bold text-2xl">Leo Thorne</p><p class="mono text-[11px] text-gray-700 font-black uppercase tracking-widest">Hardware Analyst // London</p></div>
+                        </div>
+                        <p class="text-gray-400 text-lg italic leading-relaxed">"The GAAFET transition is the real story here. Apple's TSMC capacity lock has essentially defined the market for the next two years. Great breakdown of the nanosheet physics."</p>
+                    </div>
+                    <div class="glass-card p-14 rounded-[4rem] pop-container m-0">
+                        <div class="flex items-center gap-8 mb-10">
+                            <div class="w-16 h-16 rounded-3xl bg-orange-600 flex items-center justify-center font-black text-white text-sm shadow-2xl">EV</div>
+                            <div><p class="text-white font-bold text-2xl">Dr. Elias Vance</p><p class="mono text-[11px] text-gray-700 font-black uppercase tracking-widest">Lithography Specialist</p></div>
+                        </div>
+                        <p class="text-gray-400 text-lg italic leading-relaxed">"Intel’s PowerVia gamble is exactly what they needed. The efficiency gains in backside power are the only thing that will allow us to push past 5GHz on mobile. 2nm is the wall."</p>
+                    </div>
+                    <div class="glass-card p-14 rounded-[4rem] pop-container m-0">
+                        <div class="flex items-center gap-8 mb-10">
+                            <div class="w-16 h-16 rounded-3xl bg-blue-600 flex items-center justify-center font-black text-white text-sm shadow-2xl">MK</div>
+                            <div><p class="text-white font-bold text-2xl">Maya K.</p><p class="mono text-[11px] text-gray-700 font-black uppercase tracking-widest">Systems Architect</p></div>
+                        </div>
+                        <p class="text-gray-400 text-lg italic leading-relaxed">"Finally, hardware that makes local Agentic AI a standard feature rather than a niche hobby. The M5 Pro local TPS benchmarks are the only metric that matters now."</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <aside class="lg:col-span-3"></aside>
+    </main>
+
+    <footer class="py-60 bg-black border-t border-white/5 px-10 text-left relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-32 items-start relative z-10">
+            
+            <div class="col-span-1">
+                <div class="flex items-center gap-5 mb-14">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-16 h-16 rounded-3xl grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl border border-white/10">
+                    <span class="text-4xl font-bold italic text-white uppercase tracking-tighter">Aether<span class="text-orange-500">Tech</span></span>
+                </div>
+                <p class="text-gray-700 text-[12px] font-black uppercase tracking-[0.6em] leading-loose">SYSTEM_STABLE // 2026. <br> REPOSITORY_NODE // ACTIVE. <br> ENCRYPTION_STABLE.</p>
+            </div>
+
+            <div class="flex flex-col gap-14">
+                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em]">Article Transmissions</h5>
+                <nav class="flex flex-col gap-8 text-[11px] font-black uppercase tracking-widest text-gray-500">
+                    <a href="article-6.html" class="text-white nav-node">006 // 2nm Supremacy</a>
+                    <a href="article-5.html" class="nav-node hover:text-white transition-all">005 // Small Models</a>
+                    <a href="article-4.html" class="nav-node hover:text-white transition-all">004 // Agentic Loops</a>
+                    <a href="article-3.html" class="nav-node hover:text-white transition-all">003 // Future of C</a>
+                    <a href="article-2.html" class="nav-node hover:text-white transition-all">002 // Silicon Edge</a>
+                    <a href="article-1.html" class="nav-node hover:text-white transition-all">001 // Static Hosting</a>
+                </nav>
+            </div>
+
+            <div class="flex flex-col gap-14">
+                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em]">System Registry</h5>
+                <nav class="flex flex-col gap-8 text-[11px] font-black uppercase tracking-widest text-gray-500">
+                    <a href="about.html" class="nav-node hover:text-white transition-all">Explore Insights</a>
+                    <a href="portfolio.html" class="nav-node hover:text-white transition-all">View Projects</a>
+                    <a href="contact.html" class="nav-node hover:text-white transition-all">Contact Hub</a>
+                    <a href="sitemap.html" class="nav-node hover:text-white transition-all">Sitemap Node</a>
+                    <a href="privacy.html" class="nav-node hover:text-white transition-all">Privacy Protocol</a>
+                    <a href="terms.html" class="nav-node hover:text-white transition-all">Terms of Node</a>
+                </nav>
+            </div>
+
+            <div class="flex flex-col gap-14 md:text-right">
+                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em]">External Node</h5>
+                <div class="flex gap-10 md:justify-end">
+                    <a href="https://github.com/yashraj63802" target="_blank" class="w-20 h-20 rounded-[2.5rem] glass-card flex items-center justify-center text-gray-500 hover:text-white hover:border-orange-500/50 transition-all duration-500 shadow-2xl"><i data-lucide="github" class="w-8 h-8"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="w-20 h-20 rounded-[2.5rem] glass-card flex items-center justify-center text-gray-500 hover:text-blue-500 hover:border-orange-500/50 transition-all duration-500 shadow-2xl"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto mt-60 pt-20 border-t border-white/5 text-center">
+            <p class="text-gray-800 text-[11px] font-black uppercase tracking-[1.2em]">© 2026 AETHER TECH REPOSITORY // YASH RAJ DWIVEDI // STATUS_SYNCED_2NM.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Progress Tracking Engine
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+
+        // Cinematic Reveal
+        gsap.from(".hero-reveal", { opacity: 0, y: 150, duration: 2.2, ease: "expo.out" });
+        gsap.from(".sidebar-reveal", { opacity: 0, x: -100, duration: 1.8, delay: 0.5, ease: "power4.out" });
+        
+        // Content Stagger Reveal
+        gsap.from(".content-reveal > *", {
+            scrollTrigger: {
+                trigger: ".content-reveal",
+                start: "top 85%",
+            },
+            opacity: 0, y: 120, stagger: 0.25, duration: 1.6, ease: "power3.out"
+        });
+
+        // PHYSICAL POP MECHANIC
+        const pops = document.querySelectorAll('.pop-container');
+        pops.forEach(container => {
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
+                const tiltX = (y - 0.5) * 15;
+                const tiltY = (x - 0.5) * -15;
+                container.style.transform = `perspective(1000px) translateZ(100px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+            });
+            container.addEventListener('mouseleave', () => {
+                container.style.transform = `perspective(1000px) translateZ(0px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+    </script>
+</body>
+</html>
