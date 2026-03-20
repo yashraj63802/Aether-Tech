@@ -6,7 +6,7 @@
     <title>Aether Tech // Neural Horizon | Yash Raj Dwivedi</title>
     
     <meta name="description" content="Aether Tech: The elite technical repository for Yash Raj Dwivedi. Exploring distributed AI, local silicon optimization, and high-performance engineering.">
-    <meta name="keywords" content="Yash Raj Dwivedi, AI Engineer, Data Science, Apple Silicon Optimization, Agentic AI, SLM, Web Architecture 2026">
+    <meta name="keywords" content="Yash Raj Dwivedi, AI Engineer, Data Science, Apple Silicon, Agentic AI, SLM, Web Architecture 2026">
     <meta name="author" content="Yash Raj Dwivedi">
     <link rel="icon" type="image/jpeg" href="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg">
     
@@ -19,17 +19,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
-        /* AETHER TECH BRAND ARCHITECTURE v4.2
-           PRIMARY: #ea580c (Orange-500)
-           VOID: #020617 (Obsidian Black)
-           SURFACE: #0f172a (Deep Slate)
+        /* AETHER TECH COLOR ARCHITECTURE v7.0
+           - ACCENT: #ea580c (Electric Orange)
+           - VOID BASE: #020617 (Deep Obsidian)
+           - MID DEPTH: #080e1e (Midnight Blue)
+           - SURFACE: #0f172a (Technical Slate)
         */
 
         :root {
             --obsidian: #020617;
+            --midnight: #080e1e;
+            --slate-depth: #0f172a;
             --accent: #ea580c;
-            --accent-glow: rgba(234, 88, 12, 0.4);
-            --glass: rgba(255, 255, 255, 0.02);
+            --accent-glow: rgba(234, 88, 12, 0.5);
             --glass-border: rgba(255, 255, 255, 0.08);
         }
 
@@ -42,32 +44,30 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 3D Background Engine Layer */
+        /* HARDWARE ACCELERATED 3D DATA FIELD */
         #neural-canvas {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
             z-index: -1; pointer-events: none;
-            background: var(--obsidian);
+            background: linear-gradient(180deg, var(--midnight) 0%, var(--obsidian) 100%);
         }
 
         .glass-nav { 
             background: rgba(2, 6, 23, 0.85); 
-            backdrop-filter: blur(20px); 
+            backdrop-filter: blur(25px); 
             border-bottom: 1px solid var(--glass-border);
             z-index: 1000;
         }
 
-        /* Bento 3D Transformation System */
-        .bento-grid {
-            perspective: 2000px;
-        }
+        /* 3D MAGNETIC BENTO SYSTEM */
+        .bento-grid { perspective: 2000px; }
 
         .bento-card {
-            background: var(--glass);
-            backdrop-filter: blur(12px);
+            background: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            border-radius: 3rem;
-            transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 3.5rem;
+            transition: transform 0.15s ease-out, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
             transform-style: preserve-3d;
             position: relative;
             overflow: hidden;
@@ -75,19 +75,19 @@
 
         .bento-card:hover {
             border-color: var(--accent);
-            background: rgba(234, 88, 12, 0.03);
-            box-shadow: 0 0 60px -10px var(--accent-glow);
+            background: rgba(234, 88, 12, 0.04);
+            box-shadow: 0 0 60px -15px var(--accent-glow);
         }
 
         .bento-content {
-            transform: translateZ(50px);
+            transform: translateZ(60px);
             pointer-events: none;
         }
 
-        .orange-glow { text-shadow: 0 0 30px var(--accent-glow); }
+        .orange-glow { text-shadow: 0 0 35px var(--accent-glow); }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Neural Link Ticker */
+        /* DATA TRANSMISSION TICKER */
         @keyframes ticker-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -103,7 +103,6 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 20px; }
 
-        /* Premium Button Tech */
         .btn-neural {
             background: linear-gradient(135deg, var(--accent), #7c2d12);
             position: relative; overflow: hidden;
@@ -111,7 +110,22 @@
         }
         .btn-neural:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--accent-glow); }
 
-        .header-depth { text-shadow: 10px 10px 0px rgba(0,0,0,0.5); }
+        /* UNIVERSAL DYNAMIC IMAGE ENGINE */
+        .card-img-layer {
+            position: absolute; inset: 0;
+            z-index: 0; opacity: 0.15;
+            transition: opacity 0.8s ease, transform 1.2s ease, filter 0.8s ease;
+            filter: grayscale(100%) contrast(1.2);
+        }
+        .bento-card:hover .card-img-layer {
+            opacity: 0.75;
+            transform: scale(1.1);
+            filter: grayscale(0%) contrast(1);
+        }
+        .card-vignette {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, var(--obsidian) 5%, transparent 80%);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -123,12 +137,12 @@
             <span class="ticker-data">// NODE ORIGIN: DELHI_NCR</span>
             <span class="ticker-data">// ENCRYPTION: AES_256_STABLE</span>
             <span class="ticker-data">// THROUGHPUT: 84.2 TPS</span>
-            <span class="ticker-data">// GLOBAL TECHNICAL REPOSITORY</span>
+            <span class="ticker-data">// GLOBAL TRANSMISSION REPOSITORY</span>
             <span class="ticker-data">// REPOSITORY STATUS: OPTIMAL</span>
             <span class="ticker-data">// NODE ORIGIN: DELHI_NCR</span>
             <span class="ticker-data">// ENCRYPTION: AES_256_STABLE</span>
             <span class="ticker-data">// THROUGHPUT: 84.2 TPS</span>
-            <span class="ticker-data">// GLOBAL TECHNICAL REPOSITORY</span>
+            <span class="ticker-data">// GLOBAL TRANSMISSION REPOSITORY</span>
             <span class="ticker-data">// REPOSITORY STATUS: OPTIMAL</span>
         </div>
     </div>
@@ -136,20 +150,20 @@
     <nav class="fixed w-full z-50 px-10 py-6 glass-nav transition-all duration-500">
         <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
             <a href="index.html" class="flex items-center gap-4 group">
-                <div class="w-12 h-12 rounded-2xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/60 transition-all duration-700">
+                <div class="w-12 h-12 rounded-2xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/60 transition-all duration-1000 shadow-2xl">
                     <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-full h-full object-cover">
                 </div>
                 <span class="text-3xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
             </a>
             
-            <div class="hidden lg:flex gap-16 text-[11px] font-black tracking-[0.5em] uppercase text-gray-500">
+            <div class="hidden lg:flex gap-16 text-[11px] font-black tracking-[0.5em] uppercase text-gray-400">
                 <a href="#blog-feed" class="text-orange-500 hover:text-white transition-all">Neural Feed</a>
                 <a href="about.html" class="hover:text-orange-500 transition-all">Insights</a>
                 <a href="portfolio.html" class="hover:text-orange-500 transition-all">Portfolio</a>
             </div>
 
             <div class="flex items-center gap-8">
-                <button class="hidden md:block btn-neural px-10 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] text-white shadow-2xl">
+                <button class="hidden md:block btn-neural px-10 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] text-white shadow-3xl">
                     Secure Uplink
                 </button>
                 <button id="mobile-menu-btn" class="lg:hidden text-orange-500">
@@ -170,15 +184,15 @@
                     </span>
                     Transmission Core // System Verified
                 </div>
-                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-10 tracking-tighter text-white header-depth">
+                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-10 tracking-tighter text-white">
                     Decipher <br> <span class="text-orange-500 orange-glow">The Aether.</span>
                 </h1>
                 <p class="text-gray-400 text-2xl md:text-4xl mb-16 max-w-2xl leading-tight font-light italic border-l-8 border-orange-500 pl-12 py-6 bg-white/[0.01]">
                     Deconstructing localized intelligence and high-performance hardware architectures in the 2026 landscape.
                 </p>
                 <div class="flex flex-wrap gap-10">
-                    <a href="about.html" class="bg-white text-black px-16 py-7 rounded-3xl font-black hover:scale-110 transition-all uppercase tracking-widest text-xs shadow-2xl">Explore Insights</a>
-                    <a href="portfolio.html" class="border border-white/10 glass-card px-16 py-7 rounded-3xl font-black hover:bg-white/5 transition-all uppercase tracking-widest text-xs">View Projects</a>
+                    <a href="about.html" class="bg-white text-black px-16 py-7 rounded-3xl font-black hover:scale-110 transition-all uppercase tracking-widest text-[11px] shadow-3xl">Explore Insights</a>
+                    <a href="portfolio.html" class="border border-white/10 glass-card px-16 py-7 rounded-3xl font-black hover:bg-white/5 transition-all uppercase tracking-widest text-[11px]">View Projects</a>
                 </div>
             </div>
 
@@ -192,7 +206,7 @@
         </div>
     </header>
 
-    <section id="blog-feed" class="py-60 px-10 relative">
+    <section id="blog-feed" class="py-60 px-10 relative bg-white/[0.01] border-y border-white/5">
         <div class="max-w-7xl mx-auto">
             <div class="mb-40 flex flex-col md:flex-row justify-between items-end gap-20">
                 <div>
@@ -210,16 +224,16 @@
                 
                 <div class="md:col-span-8 h-[750px] card-reveal">
                     <a href="article-5.html" class="bento-card h-full p-16 group">
-                        <div class="absolute inset-0 z-0">
-                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1400" class="w-full h-full object-cover grayscale opacity-20 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/50 to-transparent"></div>
+                        <div class="card-img-layer">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1400" class="w-full h-full object-cover">
+                            <div class="card-vignette"></div>
                         </div>
                         <div class="relative z-10 mt-auto bento-content">
                             <div class="flex items-center gap-6 mb-12">
                                 <span class="px-6 py-2 rounded-xl bg-orange-600 text-white text-[11px] font-black uppercase tracking-widest shadow-2xl">New Node</span>
                                 <span class="text-white/40 text-[11px] font-black uppercase tracking-[0.5em]">Transmission // 005</span>
                             </div>
-                            <h3 class="text-6xl md:text-[7rem] font-black italic tracking-tighter uppercase mb-10 leading-[0.85] text-white">Small <br> Models.</h3>
+                            <h3 class="text-6xl md:text-[7.5rem] font-black italic tracking-tighter uppercase mb-10 leading-[0.85] text-white">Small <br> Models.</h3>
                             <p class="text-gray-400 max-w-xl text-2xl font-light mb-12 group-hover:text-white transition-colors leading-relaxed">The shift toward 7B parameter localized intelligence on silicon.</p>
                             <div class="flex items-center gap-6 text-orange-500 font-black text-[12px] uppercase tracking-[0.6em]">Protocol: SLM_DISTILL <i data-lucide="zap" class="w-8 h-8 animate-pulse"></i></div>
                         </div>
@@ -228,14 +242,14 @@
 
                 <div class="md:col-span-4 h-[750px] card-reveal">
                     <a href="article-4.html" class="bento-card h-full p-12 group">
-                        <div class="absolute inset-0 z-0">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover grayscale opacity-20 group-hover:opacity-100 transition-all duration-1000">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] to-transparent"></div>
+                        <div class="card-img-layer">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                            <div class="card-vignette"></div>
                         </div>
                         <div class="relative z-10 mt-auto bento-content text-right">
                             <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 004</span>
                             <h3 class="text-5xl font-black uppercase italic tracking-tighter mb-8 text-white">Agentic <br> Loops.</h3>
-                            <p class="text-gray-500 text-lg mb-12 leading-relaxed">Passive chatbots to autonomous co-workers.</p>
+                            <p class="text-gray-500 text-lg mb-12 leading-relaxed italic">Passive chatbots to autonomous co-workers.</p>
                             <div class="flex justify-end">
                                 <div class="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-3xl"><i data-lucide="brain-circuit" class="w-10 h-10"></i></div>
                             </div>
@@ -245,11 +259,14 @@
 
                 <div class="md:col-span-4 h-[550px] card-reveal">
                     <a href="article-3.html" class="bento-card h-full p-12 group">
-                        <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 003</span>
-                        <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Low Level <br> Theory.</h3>
-                        <p class="text-gray-500 text-base mb-12 font-light leading-relaxed">Why C logic is still the secret weapon for AI systems.</p>
-                        <div class="mt-auto flex justify-between items-center border-t border-white/5 pt-10">
-                            <span class="mono text-[11px] text-gray-700">TYPE: SYSTEM_CODE</span>
+                        <div class="card-img-layer">
+                            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                            <div class="card-vignette"></div>
+                        </div>
+                        <div class="relative z-10 bento-content">
+                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 003</span>
+                            <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Low Level <br> Theory.</h3>
+                            <p class="text-gray-500 text-base mb-12 font-light leading-relaxed group-hover:text-white transition-colors">Why C logic is still the secret weapon for AI systems.</p>
                             <i data-lucide="code" class="w-8 h-8 text-orange-500"></i>
                         </div>
                     </a>
@@ -257,11 +274,14 @@
 
                 <div class="md:col-span-4 h-[550px] card-reveal">
                     <a href="article-2.html" class="bento-card h-full p-12 group">
-                        <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 002</span>
-                        <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Silicon <br> Edge.</h3>
-                        <p class="text-gray-500 text-base mb-12 font-light leading-relaxed">Optimizing M-Series hardware for throughput.</p>
-                        <div class="mt-auto flex justify-between items-center border-t border-white/5 pt-10">
-                            <span class="mono text-[11px] text-gray-700">TYPE: HARDWARE_DS</span>
+                        <div class="card-img-layer">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                            <div class="card-vignette"></div>
+                        </div>
+                        <div class="relative z-10 bento-content">
+                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 002</span>
+                            <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Silicon <br> Edge.</h3>
+                            <p class="text-gray-500 text-base mb-12 font-light leading-relaxed group-hover:text-white transition-colors">Optimizing M-Series hardware for throughput.</p>
                             <i data-lucide="cpu" class="w-8 h-8 text-orange-500"></i>
                         </div>
                     </a>
@@ -269,11 +289,14 @@
 
                 <div class="md:col-span-4 h-[550px] card-reveal">
                     <a href="article-1.html" class="bento-card h-full p-12 group">
-                        <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 001</span>
-                        <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Static <br> Protocol.</h3>
-                        <p class="text-gray-500 text-base mb-12 font-light leading-relaxed">The architectural choice of GitHub Pages.</p>
-                        <div class="mt-auto flex justify-between items-center border-t border-white/5 pt-10">
-                            <span class="mono text-[11px] text-gray-700">TYPE: DEPLOYMENT</span>
+                        <div class="card-img-layer">
+                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                            <div class="card-vignette"></div>
+                        </div>
+                        <div class="relative z-10 bento-content">
+                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 001</span>
+                            <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Static <br> Protocol.</h3>
+                            <p class="text-gray-500 text-base mb-12 font-light leading-relaxed group-hover:text-white transition-colors">The architectural choice of GitHub Pages.</p>
                             <i data-lucide="globe" class="w-8 h-8 text-orange-500"></i>
                         </div>
                     </a>
@@ -291,7 +314,7 @@
                     <span class="text-3xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
                 </div>
                 <p class="text-gray-600 text-[11px] font-black uppercase tracking-[0.5em] leading-loose">
-                    Decipher the Aether. <br> SYSTEM_STABLE // 2026. <br> DELHI NODE // ACTIVE.
+                    Decipher the Aether. <br> SYSTEM_STABLE // 2026. <br> GLOBAL REPOSITORY // ACTIVE.
                 </p>
             </div>
             <div class="flex flex-col gap-12">
@@ -305,9 +328,9 @@
             <div class="flex flex-col gap-12">
                 <h5 class="text-orange-500 text-[11px] font-black uppercase tracking-widest">System Registry</h5>
                 <nav class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-widest text-gray-500">
-                    <a href="about.html" class="hover:text-white transition-all">Registry Bio</a>
-                    <a href="portfolio.html" class="hover:text-white transition-all">Portfolio Nodes</a>
-                    <a href="contact.html" class="hover:text-white transition-all">Uplink Contact</a>
+                    <a href="about.html" class="hover:text-white transition-all">Insights</a>
+                    <a href="portfolio.html" class="hover:text-white transition-all">Portfolio</a>
+                    <a href="contact.html" class="hover:text-white transition-all">Contact</a>
                 </nav>
             </div>
             <div class="flex flex-col gap-12 text-right">
@@ -327,42 +350,42 @@
         lucide.createIcons();
         gsap.registerPlugin(ScrollTrigger);
 
-        // 3D SCENE CORE (Three.js Neural Network)
+        // THREE.JS CORE (Neural Field)
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.getElementById('neural-canvas').appendChild(renderer.domElement);
 
-        const particlesGeometry = new THREE.BufferGeometry();
-        const posArray = [];
-        for(let i=0; i<3000; i++) {
-            posArray.push((Math.random() - 0.5) * 40);
-            posArray.push((Math.random() - 0.5) * 40);
-            posArray.push((Math.random() - 0.5) * 40);
+        const starGeo = new THREE.BufferGeometry();
+        const starPoints = [];
+        for(let i=0; i<5000; i++) {
+            starPoints.push((Math.random() - 0.5) * 45);
+            starPoints.push((Math.random() - 0.5) * 45);
+            starPoints.push((Math.random() - 0.5) * 45);
         }
-        particlesGeometry.setAttribute('position', new THREE.Float32BufferAttribute(posArray, 3));
-        const particlesMaterial = new THREE.PointsMaterial({ color: 0xea580c, size: 0.02, transparent: true, opacity: 0.3 });
-        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(particlesMesh);
+        starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPoints, 3));
+        const starMat = new THREE.PointsMaterial({ color: 0xea580c, size: 0.02, transparent: true, opacity: 0.5 });
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
 
-        camera.position.z = 10;
+        camera.position.z = 15;
 
-        function animateNeuralField() {
-            requestAnimationFrame(animateNeuralField);
-            particlesMesh.rotation.y += 0.0004;
-            particlesMesh.rotation.x += 0.0002;
+        function animateNeural() {
+            requestAnimationFrame(animateNeural);
+            stars.rotation.y += 0.0007;
+            stars.rotation.x += 0.0004;
             renderer.render(scene, camera);
         }
-        animateNeuralField();
+        animateNeural();
 
-        // 3D CARD TILT DYNAMICS
-        const bentoCards = document.querySelectorAll('.bento-card');
-        bentoCards.forEach(card => {
+        // 3D MAGNETIC TILT PHYSICS
+        const cards = document.querySelectorAll('.bento-card');
+        cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
-                const { left, top, width, height } = card.getBoundingClientRect();
-                const x = (e.clientX - left) / width;
-                const y = (e.clientY - top) / height;
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width;
+                const y = (e.clientY - rect.top) / rect.height;
                 const tiltX = (y - 0.5) * 20;
                 const tiltY = (x - 0.5) * -20;
                 card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.03)`;
@@ -372,7 +395,7 @@
             });
         });
 
-        // REVEAL ANIMATIONS
+        // ENTRANCE ANIMATIONS
         gsap.from("#hero-text > *", {
             opacity: 0, x: -100, duration: 1.5, stagger: 0.3, ease: "power4.out"
         });
