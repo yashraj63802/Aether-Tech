@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hardware Optimization for DS | Aether Tech</title>
     
-    <meta name="description" content="Technical analysis of Apple Silicon Unified Memory for high-performance Machine Learning. Optimized for B.Tech AI & DS students at VIPS.">
+    <meta name="description" content="Technical deep-dive into optimizing Apple Silicon M-Series architecture for high-performance Machine Learning. Avoiding SSD degradation and maximizing MPS throughput.">
+    <meta name="keywords" content="Apple Silicon, M1 Max, M2 Pro, Machine Learning Hardware, Data Science Optimization, PyTorch MPS, Unified Memory Architecture, VIPS AI&DS">
     <meta name="author" content="Yash Raj Dwivedi">
-    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg">
     
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "TechArticle",
       "headline": "Hardware Optimization for Data Science: Apple Silicon Deep Dive",
-      "image": "https://images.unsplash.com/photo-1591815302525-756713cc9c37",
+      "image": "https://images.unsplash.com/photo-1518770660439-4636190af475",
       "author": {
         "@type": "Person",
         "name": "Yash Raj Dwivedi",
-        "jobTitle": "AI & DS Student",
+        "jobTitle": "AI & DS Engineer",
         "affiliation": "VIPS"
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Aether Tech"
+        "name": "Aether Tech",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://i.ibb.co/WW5S09TJ/Untitled-design.jpg"
+        }
       },
       "datePublished": "2026-03-20"
     }
@@ -41,33 +45,37 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
-        /* 100% READABILITY OVERHAUL */
+        /* THE "TRUE DARK" FIX - NO MORE GRAY TOP */
         body { 
             font-family: 'Space Grotesk', sans-serif; 
-            background-color: #030712; /* Deepest Obsidian */
-            color: #f1f5f9; /* Brilliant Slate White for Contrast */
+            background-color: #020617 !important; /* Solid Obsidian Black */
+            color: #f1f5f9; /* Maximum Contrast White-Slate */
         }
         
-        .glass-nav { background: rgba(3, 7, 18, 0.95); backdrop-filter: blur(20px); border-b: 1px solid rgba(255, 255, 255, 0.1); }
-        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .aurora-bg { background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.05), rgba(3, 7, 18, 1) 50%); }
-        .orange-glow { text-shadow: 0 0 30px rgba(234, 88, 12, 0.5); }
-        
-        /* Reading Progress */
-        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ea580c; z-index: 1000; width: 0%; box-shadow: 0 0 15px #ea580c; }
+        /*Confining gradient to a small top-area only so it doesn't wash out text */
+        .aurora-bg { 
+            background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.15), transparent 600px); 
+        }
 
-        /* Typography Master Scale */
-        .article-body p { margin-bottom: 2.5rem; line-height: 2; font-size: 1.25rem; color: #cbd5e1; font-weight: 400; }
-        .article-body h2 { color: #ffffff; font-size: 3rem; font-weight: 900; margin-top: 6rem; margin-bottom: 2.5rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 6px solid #ea580c; padding-left: 2rem; }
-        .article-body h3 { color: #f8fafc; font-size: 1.8rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.5rem; }
-        .article-body blockquote { border-left: 6px solid #ea580c; background: rgba(234, 88, 12, 0.05); padding: 3rem; margin: 5rem 0; border-radius: 0 2rem 2rem 0; color: #ffffff; font-style: italic; font-size: 1.5rem; line-height: 1.7; }
+        .glass-nav { background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(20px); border-b: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .orange-glow { text-shadow: 0 0 30px rgba(234, 88, 12, 0.6); }
+        
+        /* Reading Progress Bar */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ea580c; z-index: 1000; width: 0%; box-shadow: 0 0 20px #ea580c; }
+
+        /* Typography Master Scale - Deeply Optimized for Readability */
+        .article-body p { margin-bottom: 2.5rem; line-height: 2.1; font-size: 1.25rem; color: #cbd5e1; font-weight: 400; }
+        .article-body h2 { color: #ffffff; font-size: 3rem; font-weight: 900; margin-top: 6rem; margin-bottom: 2.5rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 8px solid #ea580c; padding-left: 2rem; background: linear-gradient(90deg, rgba(234, 88, 12, 0.1), transparent); }
+        .article-body h3 { color: #f8fafc; font-size: 1.8rem; font-weight: 700; margin-top: 4rem; margin-bottom: 1.5rem; color: #ea580c; }
+        .article-body blockquote { border-left: 6px solid #ea580c; background: rgba(255, 255, 255, 0.03); padding: 3rem; margin: 5rem 0; border-radius: 0 2rem 2rem 0; color: #ffffff; font-style: italic; font-size: 1.5rem; line-height: 1.8; }
         
         /* High-Res Assets */
-        .image-container { border-radius: 2rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 50px 100px -20px rgba(0,0,0,1); margin: 5rem 0; }
-        .image-caption { text-align: center; color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.2em; margin-top: -4rem; margin-bottom: 6rem; font-weight: 800; }
+        .image-container { border-radius: 2.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 60px 120px -30px rgba(0,0,0,1); margin: 6rem 0; }
+        .image-caption { text-align: center; color: #64748b; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.25em; margin-top: -4.5rem; margin-bottom: 7rem; font-weight: 800; }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 10px; }
     </style>
 </head>
@@ -81,22 +89,22 @@
                 <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-lg object-cover border border-orange-500/30 group-hover:rotate-12 transition-transform">
                 <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
             </a>
-            <div class="hidden md:flex gap-12 text-[10px] font-black tracking-[0.3em] uppercase text-gray-400">
+            <div class="hidden md:flex gap-12 text-[10px] font-black tracking-[0.25em] uppercase text-gray-400">
                 <a href="index.html" class="hover:text-orange-500 transition">Neural Feed</a>
                 <a href="about.html" class="hover:text-white transition">Insights</a>
                 <a href="portfolio.html" class="hover:text-white transition">Portfolio</a>
             </div>
             <div class="flex items-center gap-4">
                 <a href="contact.html" class="hidden md:block bg-orange-600 hover:bg-orange-500 px-6 py-2 rounded-lg text-xs font-black uppercase tracking-widest text-white transition-all shadow-[0_0_25px_rgba(234,88,12,.4)]">Subscribe</a>
-                <button id="mobile-menu-btn" class="md:hidden text-orange-500 hover:text-white transition-colors"><i data-lucide="menu" class="w-6 h-6"></i></button>
+                <button id="mobile-menu-btn" class="md:hidden text-orange-500"><i data-lucide="menu"></i></button>
             </div>
         </div>
     </nav>
 
     <header class="relative pt-32 pb-24 px-6 lg:pt-64 lg:pb-40 overflow-hidden border-b border-white/5">
-        <div class="absolute inset-0 z-0 opacity-30">
+        <div class="absolute inset-0 z-0 opacity-20">
             <img src="https://images.unsplash.com/photo-1591815302525-756713cc9c37?auto=format&fit=crop&q=80&w=2000" alt="Silicon Architecture" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent"></div>
         </div>
 
         <div class="max-w-5xl mx-auto relative z-10 hero-anim">
@@ -106,7 +114,7 @@
                 <span class="text-green-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> AdSense Ready</span>
             </div>
             <h1 class="text-6xl md:text-8xl lg:text-9xl font-black uppercase italic leading-[0.85] text-white mb-12 tracking-tighter">Hardware <br> <span class="text-orange-500 orange-glow">Optimization.</span></h1>
-            <p class="text-2xl md:text-3xl text-gray-400 max-w-3xl leading-relaxed font-light italic border-l-8 border-orange-600 pl-10 bg-white/5 py-6">Achieving elite throughput on local Apple Silicon for distributed machine learning and data science workloads.</p>
+            <p class="text-2xl md:text-3xl text-gray-400 max-w-3xl leading-relaxed font-light italic border-l-8 border-orange-500 pl-10 bg-white/5 py-6">Achieving elite throughput on local Apple Silicon for distributed machine learning and data science workloads. Local compute is now the standard.</p>
         </div>
     </header>
 
@@ -118,9 +126,9 @@
                 <nav id="section-nav" class="space-y-8 text-[11px] font-black uppercase tracking-[0.2em]">
                     <a href="#prologue" class="block text-orange-500 hover:pl-2 transition-all">0.0 // The Thesis</a>
                     <a href="#unified" class="block text-gray-500 hover:text-white transition-all">1.0 // Unified Memory</a>
-                    <a href="#swap" class="block text-gray-500 hover:text-white transition-all">2.0 // NAND Fatigue</a>
+                    <a href="#swap" class="block text-gray-500 hover:text-white transition-all">2.0 // NAND Degradation</a>
                     <a href="#mps" class="block text-gray-500 hover:text-white transition-all">3.0 // Metal Backend</a>
-                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">4.0 // Final Verdict</a>
+                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">4.0 // Scale Locally</a>
                 </nav>
 
                 <div class="mt-20 pt-10 border-t border-white/10">
@@ -134,9 +142,9 @@
         </aside>
 
         <article id="prologue" class="lg:col-span-6 article-body content-anim scroll-mt-32">
-            <p><span class="text-orange-500 font-bold text-7xl float-left mr-6 leading-none mt-2">D</span>ata Science is a resource-intensive field. As modern datasets scale and neural network parameters grow, the "Cloud First" mentality has become the standard. However, the cost of cloud compute can quickly drain a student's resources. This brings us back to local compute.</p>
+            <p><span class="text-orange-500 font-bold text-7xl float-left mr-6 leading-none mt-2">D</span>ata Science is a resource-intensive field. As modern datasets scale and neural network parameters grow, the "Cloud First" mentality has become the standard. However, for students and independent researchers, cloud compute isn't always viable due to escalating costs. Every failed training epoch on the cloud translates directly into a real-world cost. This brings us back to local compute.</p>
 
-            <p>If you own a MacBook Pro equipped with M-series silicon, you are sitting on a mini-supercomputer. But if you treat your Mac like a standard PC, you are wasting 70% of its potential. To truly master local AI training, we must go beneath the surface of macOS and understand the hardware-software handshake.</p>
+            <p>This thesis deconstructs how to turn your MacBook Pro (M1, M2, or M3 series) from a premium laptop into a localized data center. If you treat your Mac like a standard PC, you are wasting 70% of its potential. To truly master local AI training, we must go beneath the surface of macOS and understand the hardware-software handshake.</p>
 
             <div id="unified" class="scroll-mt-32">
                 <h2>1.0 // The Unified Memory Advantage</h2>
@@ -156,14 +164,14 @@
 
             <div id="swap" class="scroll-mt-32">
                 <h2>2.0 // The Danger of SSD Swap Memory</h2>
-                <p>But UMA has a hidden risk: <strong>Swap Memory.</strong> If your dataset exceeds your physical RAM (e.g., loading a 25GB DataFrame on a 16GB Mac), macOS uses your high-speed SSD as "overflow" RAM. Machine learning requires millions of read/write operations per second.</p>
-                
-                <p>Processing heavy files through swap memory will dramatically degrade the lifespan of your hard drive's NAND cells within months. In local compute, the goal is always to keep tensors resident in physical RAM. If your Activity Monitor shows "Swap Used" climbing into several GBs, your batch size is too large. Reduce it immediately.</p>
+                <p>But UMA has a dangerous trade-off when dealing with massive datasets: <strong>Swap Memory.</strong> When you load a dataset that exceeds your physical RAM (e.g., loading a 25GB DataFrame on a 16GB Mac), macOS doesn't crash. It uses your high-speed SSD as "overflow" RAM.</p>
+
+                <p>While this prevents crashes, machine learning writes millions of tiny data points per second. Processing heavy Parquet or CSV files on an SSD through swap memory will dramatically degrade the lifespan of your hard drive's NAND logic within months of regular use. In local compute, the goal is always to keep tensors resident in physical RAM. If your Activity Monitor shows "Swap Used" climbing into several GBs, your batch size is too large. Reduce it immediately.</p>
             </div>
 
             <div class="my-20 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-3xl bg-black group">
                 <div class="aspect-video w-full relative">
-                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/R1P1JdKcaxs" title="M1 Max performance review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/R1P1JdKcaxs" title="M1 Max Performance Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="bg-[#0f172a] px-8 py-5 border-t border-white/5 flex items-center justify-between transition-colors group-hover:bg-[#1e293b]">
                     <span class="text-[10px] text-orange-500 font-black tracking-[0.4em] uppercase flex items-center gap-3"><i data-lucide="play-circle" class="w-5 h-5"></i> Video Log // 01</span>
