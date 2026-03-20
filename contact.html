@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Uplink // Contact Hub | Aether Tech</title>
+    <title>Secure Uplink // Live Terminal | Aether Tech</title>
     
     <meta name="description" content="Secure communication uplink for Aether Tech. Connect with Yash Raj Dwivedi regarding AI architecture, hardware optimization, and technical collaborations.">
     <meta name="author" content="Yash Raj Dwivedi">
@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
@@ -38,7 +38,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 3D NEURAL CORE BACKGROUND */
+        /* 3D NEURAL FIELD BACKGROUND */
         #contact-canvas {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
@@ -53,25 +53,20 @@
             z-index: 1000;
         }
 
-        /* TERMINAL INTERFACE STYLING */
+        /* TERMINAL INTERFACE */
         .terminal-window {
             background: #000;
             border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
+            border-radius: 2rem;
             box-shadow: 0 50px 100px -20px rgba(0,0,0,1);
             font-family: 'JetBrains Mono', monospace;
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .terminal-window:hover {
-            border-color: var(--accent);
-            transform: scale(1.01) translateY(-10px);
-        }
-
         .terminal-header {
             background: #111;
-            padding: 1rem 1.5rem;
+            padding: 1.2rem 2rem;
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -84,17 +79,17 @@
         .dot-green { background: #27c93f; }
 
         .terminal-body {
-            padding: 2.5rem;
+            padding: 3rem;
             color: var(--terminal-green);
-            font-size: 0.9rem;
-            line-height: 1.8;
-            max-height: 500px;
+            font-size: 0.95rem;
+            line-height: 2;
+            max-height: 550px;
             overflow-y: auto;
         }
 
         .terminal-cursor {
             display: inline-block;
-            width: 8px; height: 18px;
+            width: 8px; height: 20px;
             background: var(--terminal-green);
             animation: blink 1s infinite;
             vertical-align: middle;
@@ -102,13 +97,13 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* CONTACT FORM GRID */
+        /* CONTACT FORM NODE */
         .contact-card {
             background: rgba(15, 23, 42, 0.5);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 3rem;
-            padding: 4rem;
+            border-radius: 3.5rem;
+            padding: 4.5rem;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
         }
@@ -116,59 +111,60 @@
         .contact-card:hover {
             border-color: var(--accent);
             transform: translateZ(80px);
-            box-shadow: 0 80px 150px -40px rgba(0,0,0,1), 0 0 40px -10px var(--accent-glow);
+            box-shadow: 0 80px 150px -40px rgba(0,0,0,1), 0 0 50px -10px var(--accent-glow);
         }
 
         .input-field {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--glass-border);
-            border-radius: 1.5rem;
-            padding: 1.5rem 2rem;
+            border-radius: 1.8rem;
+            padding: 1.8rem 2.5rem;
             width: 100%;
             color: #fff;
             font-family: 'JetBrains Mono', monospace;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .input-field:focus {
             border-color: var(--accent);
             background: rgba(234, 88, 12, 0.05);
-            box-shadow: 0 0 30px -10px var(--accent-glow);
+            box-shadow: 0 0 40px -10px var(--accent-glow);
         }
 
         .btn-secure {
             background: linear-gradient(135deg, var(--accent), #7c2d12);
-            padding: 1.5rem 4rem;
-            border-radius: 1.8rem;
+            padding: 1.8rem 5rem;
+            border-radius: 2rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.3em;
-            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            font-size: 0.9rem;
             color: #fff;
             transition: all 0.4s ease;
-            box-shadow: 0 20px 40px -10px var(--accent-glow);
+            box-shadow: 0 25px 50px -10px var(--accent-glow);
+            cursor: pointer;
         }
 
         .btn-secure:hover {
             transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 30px 60px -10px var(--accent-glow);
+            box-shadow: 0 40px 80px -15px var(--accent-glow);
         }
 
-        /* DATA TICKER */
+        /* DATA TICKER LOGIC */
         @keyframes ticker-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .ticker-wrap { width: 100%; overflow: hidden; background: #000; border-bottom: 1px solid #ffffff08; padding: 12px 0; z-index: 60; position: relative; }
+        .ticker-wrap { width: 100%; overflow: hidden; background: #000; border-bottom: 1px solid #ffffff08; padding: 15px 0; z-index: 60; position: relative; }
         .ticker-track { display: inline-flex; white-space: nowrap; animation: ticker-scroll 60s linear infinite; }
-        .ticker-data { color: var(--accent); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 4px; padding: 0 80px; opacity: 0.7; }
+        .ticker-data { color: var(--accent); font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 5px; padding: 0 100px; opacity: 0.8; }
 
         .orange-glow { text-shadow: 0 0 35px var(--accent-glow); }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 20px; }
 
         /* FOOTER NODE HOVER */
-        .footer-node:hover { border-left: 2px solid var(--accent); padding-left: 1rem; color: #fff; }
+        .footer-node:hover { border-left: 2px solid var(--accent); padding-left: 1.5rem; color: #fff; }
 
     </style>
 </head>
@@ -178,34 +174,34 @@
 
     <div class="ticker-wrap">
         <div class="ticker-track">
-            <span class="ticker-data">// NODE: DELHI_COMM_HUB</span>
-            <span class="ticker-data">// STATUS: READY_TO_TRANSMIT</span>
-            <span class="ticker-data">// ENCRYPTION: SECURE_ASYNC</span>
-            <span class="ticker-data">// REPOSITORY_UPLINK: ACTIVE</span>
-            <span class="ticker-data">// NODE: DELHI_COMM_HUB</span>
-            <span class="ticker-data">// STATUS: READY_TO_TRANSMIT</span>
-            <span class="ticker-data">// ENCRYPTION: SECURE_ASYNC</span>
-            <span class="ticker-data">// REPOSITORY_UPLINK: ACTIVE</span>
+            <span class="ticker-data">// NODE: DELHI_NCR_HUB</span>
+            <span class="ticker-data">// STATUS: FORMSPREE_LIVE</span>
+            <span class="ticker-data">// PROTOCOL: TIER_1_UPLINK</span>
+            <span class="ticker-data">// REPOSITORY_SYNC: ACTIVE</span>
+            <span class="ticker-data">// NODE: DELHI_NCR_HUB</span>
+            <span class="ticker-data">// STATUS: FORMSPREE_LIVE</span>
+            <span class="ticker-data">// PROTOCOL: TIER_1_UPLINK</span>
+            <span class="ticker-data">// REPOSITORY_SYNC: ACTIVE</span>
         </div>
     </div>
 
     <nav class="fixed w-full px-10 py-10 glass-nav">
         <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
-            <a href="index.html" class="flex items-center gap-5 group">
-                <div class="w-14 h-14 rounded-2xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/80 transition-all duration-700 shadow-2xl">
+            <a href="index.html" class="flex items-center gap-6 group">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/80 transition-all duration-700 shadow-2xl">
                     <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-full h-full object-cover">
                 </div>
                 <span class="text-4xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
             </a>
             
-            <div class="hidden lg:flex gap-16 text-[12px] font-black tracking-[0.6em] uppercase text-gray-500">
-                <a href="index.html" class="hover:text-white transition-all hover:tracking-[0.8em]">Neural Feed</a>
-                <a href="about.html" class="hover:text-white transition-all hover:tracking-[0.8em]">Insights</a>
-                <a href="portfolio.html" class="hover:text-white transition-all hover:tracking-[0.8em]">Portfolio</a>
+            <div class="hidden lg:flex gap-16 text-[12px] font-black tracking-[0.7em] uppercase text-gray-500">
+                <a href="index.html" class="hover:text-white transition-all hover:tracking-[0.9em]">Neural Feed</a>
+                <a href="about.html" class="hover:text-white transition-all hover:tracking-[0.9em]">Insights</a>
+                <a href="portfolio.html" class="hover:text-white transition-all hover:tracking-[0.9em]">Portfolio</a>
             </div>
 
-            <button onclick="window.history.back()" class="hidden md:flex items-center gap-4 border border-white/10 px-10 py-4 rounded-3xl text-[11px] font-black uppercase tracking-widest text-white hover:bg-white/5 transition-all">
-                <i data-lucide="arrow-left" class="w-5 h-5"></i> Back
+            <button onclick="window.history.back()" class="hidden md:flex items-center gap-5 border border-white/10 px-12 py-5 rounded-3xl text-[12px] font-black uppercase tracking-widest text-white hover:bg-white/5 transition-all">
+                <i data-lucide="arrow-left" class="w-6 h-6"></i> Back
             </button>
         </div>
     </nav>
@@ -213,103 +209,105 @@
     <main class="relative pt-80 pb-60 px-10">
         <div class="max-w-7xl mx-auto">
             
-            <div class="mb-48 text-center hero-reveal">
-                <span class="text-orange-500 font-black tracking-[1em] text-[13px] uppercase mb-10 block">// COMMUNICATION_UPLINK</span>
-                <h1 class="text-7xl md:text-[11rem] font-black uppercase italic tracking-tighter text-white mb-10">Secure <br> <span class="text-orange-500 orange-glow">Uplink.</span></h1>
-                <p class="text-gray-500 text-2xl md:text-3xl font-light italic max-w-3xl mx-auto border-t border-white/5 pt-16">
-                    Initiate a secure transmission node. Every message is encrypted and synchronized with the Aether Tech global repository.
+            <div class="mb-56 text-center hero-reveal">
+                <span class="text-orange-500 font-black tracking-[1.2em] text-[14px] uppercase mb-12 block">// LIVE_UPLINK_PROTOCOL</span>
+                <h1 class="text-7xl md:text-[12rem] font-black uppercase italic tracking-tighter text-white mb-12">Secure <br> <span class="text-orange-500 orange-glow">Uplink.</span></h1>
+                <p class="text-gray-500 text-2xl md:text-4xl font-light italic max-w-4xl mx-auto border-t border-white/5 pt-16">
+                    Establish a direct communication node. Your transmission is synchronized with the Aether Tech repository via the Formspree gateway.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
                 
                 <div class="terminal-window card-reveal">
                     <div class="terminal-header">
                         <div class="dot dot-red"></div>
                         <div class="dot dot-yellow"></div>
                         <div class="dot dot-green"></div>
-                        <span class="ml-4 text-[10px] text-gray-500 font-bold uppercase tracking-widest italic">system_secure_v12.0</span>
+                        <span class="ml-6 text-[11px] text-gray-500 font-bold uppercase tracking-widest italic">system_live_v12.1</span>
                     </div>
                     <div class="terminal-body" id="terminal-text">
-                        <p class="mb-4">> INITIATING SYSTEM_DIAGNOSTIC...</p>
-                        <p class="mb-4">> NODE_ORIGIN: DELHI_NCR_REPOSITORY</p>
-                        <p class="mb-4">> SECURITY_PROTOCOL: TIER_1_ACTIVE</p>
-                        <p class="mb-4">> TARGET_UID: YASH_RAJ_DWIVEDI</p>
-                        <p class="mb-4">> AWAITING USER_INPUT...<span class="terminal-cursor"></span></p>
+                        <p class="mb-5">> INITIALIZING FORMSPREE_HANDSHAKE...</p>
+                        <p class="mb-5">> ENDPOINT: https://formspree.io/f/xreyderp</p>
+                        <p class="mb-5">> ENCRYPTION_STABLE: AES_256_RSA</p>
+                        <p class="mb-5">> UPLINK_TARGET: YASH_RAJ_DWIVEDI</p>
+                        <p class="mb-5">> AWAITING TRANSMISSION_DATA...<span class="terminal-cursor"></span></p>
                     </div>
-                    <div class="p-8 bg-[#050505] border-t border-white/5">
-                        <div class="flex items-center gap-6 text-[10px] font-black uppercase text-gray-600">
-                            <span class="text-orange-500">LINK_READY</span>
-                            <span>AES_256_STABLE</span>
-                            <span>LATENCY: 14MS</span>
+                    <div class="p-10 bg-[#050505] border-t border-white/5">
+                        <div class="flex items-center gap-8 text-[11px] font-black uppercase text-gray-600">
+                            <span class="text-orange-500">GATEWAY_OPEN</span>
+                            <span>NODE: DELHI_01</span>
+                            <span>LATENCY: 12MS</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="contact-card card-reveal">
-                    <h3 class="text-white font-black text-4xl uppercase italic tracking-widest mb-16 flex items-center gap-6">
-                        <i data-lucide="send" class="text-orange-500 w-10 h-10"></i> Send Node
+                    <h3 class="text-white font-black text-4xl uppercase italic tracking-widest mb-20 flex items-center gap-8">
+                        <i data-lucide="zap" class="text-orange-500 w-12 h-12"></i> New Node
                     </h3>
                     
-                    <form action="#" class="space-y-12">
+                    <form action="https://formspree.io/f/xreyderp" method="POST" class="space-y-16">
                         <div class="group relative">
-                            <p class="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-4 ml-4">01 // Identifier</p>
-                            <input type="text" placeholder="FULL_NAME_OR_ALIAS" class="input-field">
+                            <p class="text-[11px] font-black uppercase tracking-[0.4em] text-gray-700 mb-6 ml-6">01 // Identifier</p>
+                            <input type="text" name="Full_Name" required placeholder="FULL_NAME_OR_ALIAS" class="input-field">
                         </div>
                         
                         <div class="group relative">
-                            <p class="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-4 ml-4">02 // Return_Path</p>
-                            <input type="email" placeholder="SECURE_EMAIL_ADDRESS" class="input-field">
+                            <p class="text-[11px] font-black uppercase tracking-[0.4em] text-gray-700 mb-6 ml-6">02 // Return_Path</p>
+                            <input type="email" name="Return_Path" required placeholder="SECURE_EMAIL_ADDRESS" class="input-field">
                         </div>
 
                         <div class="group relative">
-                            <p class="text-[10px] font-black uppercase tracking-widest text-gray-600 mb-4 ml-4">03 // Transmission_Data</p>
-                            <textarea rows="6" placeholder="ENTER_MESSAGE_ENCRYPTION_READY..." class="input-field resize-none"></textarea>
+                            <p class="text-[11px] font-black uppercase tracking-[0.4em] text-gray-700 mb-6 ml-6">03 // Transmission_Data</p>
+                            <textarea name="Transmission_Data" required rows="7" placeholder="ENTER_MESSAGE_ENCRYPTION_READY..." class="input-field resize-none"></textarea>
                         </div>
+
+                        <input type="hidden" name="_subject" value="New Aether Tech Transmission Node">
 
                         <button type="submit" class="btn-secure w-full">
                             Execute Transmission
                         </button>
                     </form>
-                </div>
+                    </div>
 
             </div>
 
-            <div class="mt-60 grid grid-cols-1 md:grid-cols-3 gap-12">
-                <a href="https://github.com/yashraj63802" target="_blank" class="contact-card p-16 text-center group">
-                    <i data-lucide="github" class="w-16 h-16 mx-auto mb-10 text-orange-500 group-hover:scale-125 transition-transform duration-500"></i>
-                    <h4 class="text-white font-black text-2xl uppercase italic tracking-widest">Git Node</h4>
-                    <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest mt-4">yashraj63802</p>
+            <div class="mt-72 grid grid-cols-1 md:grid-cols-3 gap-16">
+                <a href="https://github.com/yashraj63802" target="_blank" class="contact-card p-20 text-center group">
+                    <i data-lucide="github" class="w-20 h-20 mx-auto mb-12 text-orange-500 group-hover:scale-125 transition-transform duration-700"></i>
+                    <h4 class="text-white font-black text-3xl uppercase italic tracking-tighter">Github</h4>
+                    <p class="text-gray-700 text-[11px] font-bold uppercase tracking-widest mt-6">yashraj63802</p>
                 </a>
-                <a href="https://linkedin.com" target="_blank" class="contact-card p-16 text-center group">
-                    <i data-lucide="linkedin" class="w-16 h-16 mx-auto mb-10 text-orange-500 group-hover:scale-125 transition-transform duration-500"></i>
-                    <h4 class="text-white font-black text-2xl uppercase italic tracking-widest">LinkedIn Node</h4>
-                    <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest mt-4">Sync Professional</p>
+                <a href="https://linkedin.com" target="_blank" class="contact-card p-20 text-center group">
+                    <i data-lucide="linkedin" class="w-20 h-20 mx-auto mb-12 text-orange-500 group-hover:scale-125 transition-transform duration-700"></i>
+                    <h4 class="text-white font-black text-3xl uppercase italic tracking-tighter">LinkedIn</h4>
+                    <p class="text-gray-700 text-[11px] font-bold uppercase tracking-widest mt-6">Secure Sync</p>
                 </a>
-                <a href="mailto:yashrajdwivedi29.12.2005@gmail.com" class="contact-card p-16 text-center group">
-                    <i data-lucide="mail" class="w-16 h-16 mx-auto mb-10 text-orange-500 group-hover:scale-125 transition-transform duration-500"></i>
-                    <h4 class="text-white font-black text-2xl uppercase italic tracking-widest">Direct Mail</h4>
-                    <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest mt-4">Secure Uplink</p>
+                <a href="mailto:yashrajdwivedi29.12.2005@gmail.com" class="contact-card p-20 text-center group">
+                    <i data-lucide="mail" class="w-20 h-20 mx-auto mb-12 text-orange-500 group-hover:scale-125 transition-transform duration-700"></i>
+                    <h4 class="text-white font-black text-3xl uppercase italic tracking-tighter">Direct</h4>
+                    <p class="text-gray-700 text-[11px] font-bold uppercase tracking-widest mt-6">AES_256_ACTIVE</p>
                 </a>
             </div>
 
         </div>
     </main>
 
-    <footer class="py-60 bg-black border-t border-white/5 px-10 text-left relative overflow-hidden">
+    <footer class="py-64 bg-black border-t border-white/5 px-10 relative overflow-hidden">
         <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-32 items-start relative z-10">
             
             <div class="col-span-1">
-                <div class="flex items-center gap-5 mb-14">
-                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-16 h-16 rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl border border-white/10">
+                <div class="flex items-center gap-6 mb-16">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-20 h-20 rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl border border-white/10">
                     <span class="text-4xl font-bold italic text-white uppercase tracking-tighter">Aether<span class="text-orange-500">Tech</span></span>
                 </div>
-                <p class="text-gray-700 text-[12px] font-black uppercase tracking-[0.6em] leading-loose">SYSTEM_STABLE // 2026. <br> DELHI_GLOBAL_NODE // ACTIVE.</p>
+                <p class="text-gray-700 text-[12px] font-black uppercase tracking-[0.7em] leading-loose">SYSTEM_STABLE // 2026. <br> DELHI_GLOBAL_NODE // ACTIVE. <br> REPOSITORY_SYNCED.</p>
             </div>
 
             <div class="flex flex-col gap-14">
-                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em]">Article Transmissions</h5>
-                <nav class="flex flex-col gap-8 text-[11px] font-black uppercase tracking-widest text-gray-500">
+                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[1em]">Articles</h5>
+                <nav class="flex flex-col gap-10 text-[11px] font-black uppercase tracking-[0.3em] text-gray-500">
                     <a href="article-6.html" class="footer-node hover:text-white transition-all">006 // Atom-Thick Power</a>
                     <a href="article-5.html" class="footer-node hover:text-white transition-all">005 // SLM Logic</a>
                     <a href="article-4.html" class="footer-node hover:text-white transition-all">004 // Agentic AI</a>
@@ -320,11 +318,11 @@
             </div>
 
             <div class="flex flex-col gap-14">
-                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em]">System Registry</h5>
-                <nav class="flex flex-col gap-8 text-[11px] font-black uppercase tracking-widest text-gray-500">
+                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[1em]">System Hub</h5>
+                <nav class="flex flex-col gap-10 text-[11px] font-black uppercase tracking-[0.3em] text-gray-500">
                     <a href="about.html" class="footer-node hover:text-white transition-all">Explore Insights</a>
                     <a href="portfolio.html" class="footer-node hover:text-white transition-all">View Projects</a>
-                    <a href="contact.html" class="footer-node text-white border-l-2 border-orange-500 pl-4">Contact Hub (Active)</a>
+                    <a href="contact.html" class="footer-node text-white border-l-4 border-orange-500 pl-8">Contact (Active)</a>
                     <a href="sitemap.html" class="footer-node hover:text-white transition-all">Sitemap Matrix</a>
                     <a href="privacy.html" class="footer-node hover:text-white transition-all">Privacy Protocol</a>
                     <a href="terms.html" class="footer-node hover:text-white transition-all">Service Terms</a>
@@ -332,16 +330,16 @@
             </div>
 
             <div class="flex flex-col gap-14 md:text-right">
-                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[0.8em]">External Uplink</h5>
-                <div class="flex gap-10 md:justify-end">
-                    <a href="https://github.com/yashraj63802" target="_blank" class="w-20 h-20 rounded-[2.5rem] glass-card flex items-center justify-center text-gray-500 hover:text-white transition-all duration-500 shadow-2xl"><i data-lucide="github" class="w-8 h-8"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="w-20 h-20 rounded-[2.5rem] glass-card flex items-center justify-center text-gray-500 hover:text-blue-500 transition-all duration-500 shadow-2xl"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                <h5 class="text-orange-500 text-[12px] font-black uppercase tracking-[1em]">Connect</h5>
+                <div class="flex gap-12 md:justify-end">
+                    <a href="https://github.com/yashraj63802" target="_blank" class="w-24 h-24 rounded-[3rem] glass-card flex items-center justify-center text-gray-500 hover:text-white transition-all duration-700 shadow-2xl"><i data-lucide="github" class="w-10 h-10"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="w-24 h-24 rounded-[3rem] glass-card flex items-center justify-center text-gray-500 hover:text-blue-500 transition-all duration-700 shadow-2xl"><i data-lucide="linkedin" class="w-10 h-10"></i></a>
                 </div>
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto mt-60 pt-20 border-t border-white/5 text-center">
-            <p class="text-gray-800 text-[11px] font-black uppercase tracking-[1.2em]">© 2026 AETHER TECH REPOSITORY // YASH RAJ DWIVEDI // STATUS_SYNCED_MATRIX.</p>
+        <div class="max-w-7xl mx-auto mt-72 pt-24 border-t border-white/5 text-center">
+            <p class="text-gray-800 text-[12px] font-black uppercase tracking-[1.8em]">© 2026 AETHER TECH REPOSITORY // YASH RAJ DWIVEDI // STATUS_SYNCED_MATRIX.</p>
         </div>
     </footer>
 
@@ -349,7 +347,7 @@
         lucide.createIcons();
         gsap.registerPlugin(ScrollTrigger);
 
-        // THREE.JS BACKGROUND
+        // THREE.JS CORE
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -358,47 +356,47 @@
 
         const starGeo = new THREE.BufferGeometry();
         const starPoints = [];
-        for(let i=0; i<4500; i++) {
+        for(let i=0; i<5000; i++) {
             starPoints.push((Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50);
         }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPoints, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0xea580c, size: 0.02, transparent: true, opacity: 0.5 });
+        const starMat = new THREE.PointsMaterial({ color: 0xea580c, size: 0.02, transparent: true, opacity: 0.6 });
         const stars = new THREE.Points(starGeo, starMat);
         scene.add(stars);
-        camera.position.z = 20;
+        camera.position.z = 25;
 
         function animate() {
             requestAnimationFrame(animate);
-            stars.rotation.y += 0.0005;
+            stars.rotation.y += 0.0006;
             renderer.render(scene, camera);
         }
         animate();
 
-        // TERMINAL TYPING EFFECT
+        // TERMINAL LOGIC
         const terminalBody = document.getElementById('terminal-text');
         const logs = [
-            "> USER_HANDSHAKE: INITIALIZED",
+            "> HANDSHAKE_SUCCESS: FORMSPREE",
             "> LOCATION: DELHI_NODE_01",
-            "> ENCRYPTION_KEY: AES_256_RSA_4096",
-            "> DETECTING HARDWARE: M2_PRO_OPTIMIZED",
-            "> TRANSMISSION_BUFFER: READY",
-            "> STATUS: STABLE"
+            "> KEY_LENGTH: 4096_BIT",
+            "> OPTIMIZED FOR: M2_PRO_SILICON",
+            "> DATA_PACKET_BUFFER: READY",
+            "> STATUS: SYSTEM_ONLINE"
         ];
         
         let logIndex = 0;
         function typeLog() {
             if(logIndex < logs.length) {
                 const p = document.createElement('p');
-                p.className = "mb-4";
+                p.className = "mb-5";
                 p.textContent = logs[logIndex];
                 terminalBody.insertBefore(p, terminalBody.lastChild);
                 logIndex++;
-                setTimeout(typeLog, 2000);
+                setTimeout(typeLog, 1800);
             }
         }
-        setTimeout(typeLog, 5000);
+        setTimeout(typeLog, 4500);
 
-        // 3D KINETIC POP PHYSICS
+        // 3D KINETIC POP
         const cards = document.querySelectorAll('.contact-card, .terminal-window');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
@@ -416,10 +414,16 @@
         });
 
         // REVEALS
-        gsap.from(".hero-reveal", { opacity: 0, y: 150, duration: 2, ease: "expo.out" });
+        gsap.from(".hero-reveal", { opacity: 0, y: 150, duration: 2.2, ease: "expo.out" });
         gsap.from(".card-reveal", {
-            scrollTrigger: { trigger: ".card-reveal", start: "top 80%" },
-            opacity: 0, y: 120, stagger: 0.3, duration: 1.8, ease: "power4.out"
+            scrollTrigger: { trigger: ".card-reveal", start: "top 85%" },
+            opacity: 0, y: 130, stagger: 0.35, duration: 2, ease: "power4.out"
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
     </script>
