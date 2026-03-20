@@ -41,13 +41,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
-        /* Elite Readability Palette */
-        body { font-family: 'Space Grotesk', sans-serif; background-color: #0b1120; color: #94a3b8; }
+        /* RESTORED OBSIDIAN PALETTE FOR MAXIMUM READABILITY */
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #020617; color: #94a3b8; }
         
         /* Advanced Visual Identity */
-        .glass-nav { background: rgba(2, 6, 23, 0.9); backdrop-filter: blur(20px); border-b: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-nav { background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(20px); border-b: 1px solid rgba(255, 255, 255, 0.05); }
         .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .aurora-bg { background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.1), rgba(2, 6, 23, 1) 40%); }
+        
+        /* Deep Aurora Background (Muted for Text Contrast) */
+        .aurora-bg { background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.08), rgba(2, 6, 23, 1) 50%); }
         .orange-glow { text-shadow: 0 0 30px rgba(234, 88, 12, 0.5); }
         
         /* Reading Progress Bar Logic */
@@ -68,7 +70,7 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0b1120; }
+        ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 10px; }
     </style>
 </head>
@@ -159,7 +161,7 @@
 
             <div id="swap" class="scroll-mt-32">
                 <h2>2.0 // The Danger of SSD Swap Memory</h2>
-                <p>But UMA has a dangerous trade-off when dealing with massive datasets: <strong>Swap Memory.</strong> When you load a dataset that exceeds your physical RAM (e.g., loading a 20GB DataFrame on a 16GB Mac), macOS doesn't crash. It uses your high-speed SSD as "overflow" RAM.</p>
+                <p>But UMA has a dangerous trade-off when dealing with massive datasets: <strong>Swap Memory.</strong> When you load a dataset that exceeds your physical RAM, macOS doesn't crash. It uses your high-speed SSD as "overflow" RAM.</p>
 
                 <p>While this prevents crashes, machine learning writes millions of tiny data points per second. Processing heavy Parquet or CSV files on an SSD through swap memory will dramatically degrade the lifespan of your hard drive's NAND logic within months of regular use. In local compute, the goal is always to keep tensors resident in physical RAM.</p>
 
