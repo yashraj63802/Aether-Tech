@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aether Tech // Neural Interface | Yash Raj Dwivedi</title>
+    <title>Aether Tech // Neural Horizon | Yash Raj Dwivedi</title>
     
     <meta name="description" content="Aether Tech: The elite technical repository for Yash Raj Dwivedi. Exploring distributed AI, local silicon optimization, and high-performance engineering.">
     <meta name="keywords" content="Yash Raj Dwivedi, AI Engineer, Data Science, Apple Silicon, Agentic AI, SLM, Web Architecture 2026">
@@ -19,11 +19,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
         
-        /* AETHER TECH COLOR ARCHITECTURE v8.0
+        /* AETHER TECH COLOR ARCHITECTURE v8.1
            - ACCENT: #ea580c (Electric Orange)
            - VOID BASE: #020617 (Deep Obsidian)
            - MID DEPTH: #080e1e (Midnight Blue)
-           - POP UP DEPTH: rgba(234, 88, 12, 0.4)
         */
 
         :root {
@@ -43,7 +42,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 3D NEURAL DATA ENGINE */
+        /* 3D NEURAL DATA FIELD */
         #neural-canvas {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
@@ -58,41 +57,36 @@
             z-index: 1000;
         }
 
-        /* 3D KINETIC BENTO GRID SYSTEM (POPPING MECHANIC) */
+        /* MOBILE MENU STYLING */
+        #mobile-menu {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(2, 6, 23, 0.98);
+            backdrop-filter: blur(30px);
+        }
+
+        /* 3D KINETIC BENTO GRID (POP-UP MECHANIC) */
         .bento-grid { perspective: 2000px; }
 
         .bento-card {
             background: rgba(15, 23, 42, 0.4);
             backdrop-filter: blur(15px);
             border: 1px solid var(--glass-border);
-            border-radius: 3.5rem;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        border-color 0.4s ease, 
-                        box-shadow 0.4s ease;
+            border-radius: 3rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease;
             transform-style: preserve-3d;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
 
-        /* THE "POP UP" ANIMATION */
-        .bento-card:hover {
-            border-color: var(--accent);
-            transform: translateZ(80px) scale(1.02); /* PHYSICAL POP UP */
-            background: rgba(234, 88, 12, 0.02);
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8), 0 0 40px -10px var(--accent-glow);
+        @media (min-width: 1024px) {
+            .bento-card:hover {
+                border-color: var(--accent);
+                transform: translateZ(80px) scale(1.02);
+                box-shadow: 0 50px 100px -20px rgba(0,0,0,0.8), 0 0 40px -10px var(--accent-glow);
+            }
         }
 
-        /* THE "POP DOWN" WHEN CLICKING */
-        .bento-card:active {
-            transform: translateZ(-20px) scale(0.98);
-        }
-
-        .bento-content {
-            transform: translateZ(50px);
-            pointer-events: none;
-        }
-
+        .bento-content { transform: translateZ(50px); pointer-events: none; }
         .orange-glow { text-shadow: 0 0 35px var(--accent-glow); }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
@@ -104,7 +98,7 @@
         .ticker-container {
             width: 100%; overflow: hidden; background: #000;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 10px 0; position: relative; z-index: 60;
+            padding: 8px 0; position: relative; z-index: 60;
         }
         .ticker-track { display: inline-flex; white-space: nowrap; animation: ticker-scroll 50s linear infinite; }
         .ticker-data { color: var(--accent); font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; padding: 0 60px; opacity: 0.7; }
@@ -119,16 +113,15 @@
         }
         .btn-neural:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--accent-glow); }
 
-        /* DYNAMIC CARD IMAGE ENGINE */
         .card-img-layer {
             position: absolute; inset: 0;
-            z-index: 0; opacity: 0.1;
+            z-index: 0; opacity: 0.15;
             transition: opacity 0.8s ease, transform 1.2s ease, filter 0.8s ease;
             filter: grayscale(100%);
         }
         .bento-card:hover .card-img-layer {
             opacity: 0.7;
-            transform: scale(1.15);
+            transform: scale(1.1);
             filter: grayscale(0%);
         }
         .card-vignette {
@@ -147,164 +140,172 @@
             <span class="ticker-data">// ENCRYPTION: AES_256_STABLE</span>
             <span class="ticker-data">// THROUGHPUT: 84.2 TPS</span>
             <span class="ticker-data">// GLOBAL TECHNICAL REPOSITORY</span>
-            <span class="ticker-data">// SYSTEM_STATUS: OPTIMAL</span>
+            <span class="ticker-data">// REPOSITORY STATUS: OPTIMAL</span>
             <span class="ticker-data">// NODE ORIGIN: DELHI_NCR</span>
             <span class="ticker-data">// ENCRYPTION: AES_256_STABLE</span>
             <span class="ticker-data">// THROUGHPUT: 84.2 TPS</span>
             <span class="ticker-data">// GLOBAL TECHNICAL REPOSITORY</span>
-            <span class="ticker-data">// SYSTEM_STATUS: OPTIMAL</span>
+            <span class="ticker-data">// REPOSITORY STATUS: OPTIMAL</span>
         </div>
     </div>
 
-    <nav class="fixed w-full z-50 px-10 py-6 glass-nav transition-all duration-500">
+    <nav class="fixed w-full z-[1001] px-6 md:px-10 py-5 glass-nav transition-all duration-500">
         <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
-            <a href="index.html" class="flex items-center gap-4 group">
-                <div class="w-12 h-12 rounded-2xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/60 transition-all duration-1000 shadow-2xl">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl overflow-hidden border border-orange-500/20 group-hover:border-orange-500/60 transition-all duration-700">
                     <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-full h-full object-cover">
                 </div>
-                <span class="text-3xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+                <span class="text-2xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
             </a>
             
-            <div class="hidden lg:flex gap-16 text-[11px] font-black tracking-[0.5em] uppercase text-gray-500">
+            <div class="hidden lg:flex gap-14 text-[11px] font-black tracking-[0.5em] uppercase text-gray-500">
                 <a href="#blog-feed" class="text-orange-500 hover:text-white transition-all">Neural Feed</a>
                 <a href="about.html" class="hover:text-orange-500 transition-all">Insights</a>
                 <a href="portfolio.html" class="hover:text-orange-500 transition-all">Portfolio</a>
             </div>
 
-            <div class="flex items-center gap-8">
-                <button class="hidden md:block btn-neural px-10 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.4em] text-white shadow-3xl">
+            <div class="flex items-center gap-6">
+                <button class="hidden md:block btn-neural px-8 py-2.5 rounded-2xl text-[9px] font-black uppercase tracking-[0.4em] text-white">
                     Secure Uplink
                 </button>
-                <button id="mobile-menu-btn" class="lg:hidden text-orange-500">
-                    <i data-lucide="menu" class="w-8 h-8"></i>
+                <button id="mobile-menu-btn" class="lg:hidden text-orange-500 hover:text-white transition-colors p-2">
+                    <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <header class="relative min-h-screen flex items-center pt-32 px-10 overflow-hidden">
+    <div id="mobile-menu" class="fixed inset-0 z-[1000] hidden flex-col items-center justify-center gap-12 text-center">
+        <a href="#blog-feed" class="mobile-link text-4xl font-black uppercase italic tracking-tighter text-orange-500">Neural Feed</a>
+        <a href="about.html" class="mobile-link text-4xl font-black uppercase italic tracking-tighter text-white">Insights</a>
+        <a href="portfolio.html" class="mobile-link text-4xl font-black uppercase italic tracking-tighter text-white">Portfolio</a>
+        <a href="contact.html" class="mobile-link text-4xl font-black uppercase italic tracking-tighter text-white">Contact</a>
+        <button class="btn-neural px-12 py-5 rounded-3xl text-xs font-black uppercase tracking-widest text-white mt-10">Initialize Uplink</button>
+    </div>
+
+    <header class="relative min-h-screen flex items-center pt-32 px-6 md:px-10 overflow-hidden">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-10 items-center relative z-10">
             
             <div id="hero-text" class="lg:col-span-8">
-                <div class="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-[10px] font-black tracking-[0.5em] mb-12 uppercase">
+                <div class="inline-flex items-center gap-4 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-gray-400 text-[9px] font-black tracking-[0.5em] mb-10 uppercase">
                     <span class="relative flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
                     </span>
                     Transmission Core // System Verified
                 </div>
-                <h1 class="text-7xl md:text-9xl font-black uppercase italic leading-[0.8] mb-10 tracking-tighter text-white">
+                <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black uppercase italic leading-[0.9] md:leading-[0.8] mb-10 tracking-tighter text-white">
                     Decipher <br> <span class="text-orange-500 orange-glow">The Aether.</span>
                 </h1>
-                <p class="text-gray-400 text-2xl md:text-4xl mb-16 max-w-2xl leading-tight font-light italic border-l-8 border-orange-500 pl-12 py-6 bg-white/[0.01]">
-                    Analyzing high-performance hardware architectures and decentralized AI logic in the 2026 landscape.
+                <p class="text-gray-400 text-lg md:text-3xl mb-16 max-w-2xl leading-tight font-light italic border-l-4 md:border-l-8 border-orange-500 pl-8 md:pl-12 py-4 bg-white/[0.01]">
+                    Deconstructing localized intelligence and high-performance hardware architectures in 2026.
                 </p>
-                <div class="flex flex-wrap gap-10">
-                    <a href="about.html" class="bg-white text-black px-16 py-7 rounded-3xl font-black hover:scale-110 transition-all uppercase tracking-widest text-[11px] shadow-3xl">Explore Insights</a>
-                    <a href="portfolio.html" class="border border-white/10 glass-card px-16 py-7 rounded-3xl font-black hover:bg-white/5 transition-all uppercase tracking-widest text-[11px]">View Projects</a>
+                <div class="flex flex-wrap gap-6 md:gap-10">
+                    <a href="about.html" class="bg-white text-black px-10 md:px-16 py-5 md:py-7 rounded-3xl font-black hover:scale-110 transition-all uppercase tracking-widest text-[10px] shadow-3xl">Explore Insights</a>
+                    <a href="portfolio.html" class="border border-white/10 glass-card px-10 md:px-16 py-5 md:py-7 rounded-3xl font-black hover:bg-white/5 transition-all uppercase tracking-widest text-[10px]">View Projects</a>
                 </div>
             </div>
 
             <div class="lg:col-span-4 relative hidden lg:block">
                 <div class="w-full aspect-square glass-card rounded-[5rem] p-8 relative group border-orange-500/20">
                     <div class="absolute inset-0 bg-orange-600/10 blur-[120px] rounded-full animate-pulse"></div>
-                    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1200" alt="Logic Map" class="w-full h-full object-cover rounded-[4rem] grayscale group-hover:grayscale-0 transition-all duration-1000">
+                    <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1200" alt="Logic Map" class="w-full h-full object-cover rounded-[4rem] grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-3xl">
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="blog-feed" class="py-60 px-10 relative">
+    <section id="blog-feed" class="py-40 md:py-60 px-6 md:px-10 relative">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-40 flex flex-col md:flex-row justify-between items-end gap-20">
+            <div class="mb-24 md:mb-40 flex flex-col md:flex-row justify-between items-end gap-12 md:gap-20">
                 <div>
-                    <span class="text-orange-500 font-black tracking-[0.7em] text-[12px] uppercase mb-8 block">// THE KNOWLEDGE GRAPH</span>
-                    <h2 class="text-6xl md:text-[9rem] font-black uppercase italic leading-none tracking-tighter text-white">Archives.</h2>
+                    <span class="text-orange-500 font-black tracking-[0.7em] text-[11px] uppercase mb-6 block">// THE KNOWLEDGE GRAPH</span>
+                    <h2 class="text-5xl md:text-[9rem] font-black uppercase italic leading-none tracking-tighter text-white">Archives.</h2>
                 </div>
-                <div class="max-w-md border-l-2 border-orange-500/30 pl-12 py-4">
-                    <p class="text-gray-500 text-lg italic font-light leading-relaxed">
-                        Deciphering complex intelligence systems through local hardware prototyping.
+                <div class="max-w-md border-l-2 border-orange-500/30 pl-8 md:pl-12 py-4">
+                    <p class="text-gray-500 text-base md:text-lg italic font-light leading-relaxed">
+                        Analyzing the convergence of high-performance frontend engineering and decentralized AI logic.
                     </p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 bento-grid">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 bento-grid">
                 
-                <div class="md:col-span-8 h-[750px] card-reveal">
-                    <a href="article-5.html" class="bento-card h-full p-16 group">
+                <div class="md:col-span-8 h-[600px] md:h-[750px] card-reveal">
+                    <a href="article-5.html" class="bento-card h-full p-10 md:p-16 group">
                         <div class="card-img-layer">
                             <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1400" class="w-full h-full object-cover">
                             <div class="card-vignette"></div>
                         </div>
                         <div class="relative z-10 mt-auto bento-content">
-                            <div class="flex items-center gap-6 mb-12">
-                                <span class="px-6 py-2 rounded-xl bg-orange-600 text-white text-[11px] font-black uppercase tracking-widest shadow-2xl">New Node</span>
-                                <span class="text-white/40 text-[11px] font-black uppercase tracking-[0.5em]">Transmission // 005</span>
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="px-4 py-1.5 rounded-xl bg-orange-600 text-white text-[10px] font-black uppercase tracking-widest shadow-2xl">New Transmission</span>
+                                <span class="text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">005</span>
                             </div>
-                            <h3 class="text-6xl md:text-[7.5rem] font-black italic tracking-tighter uppercase mb-10 leading-[0.85] text-white">Small <br> Models.</h3>
-                            <p class="text-gray-400 max-w-xl text-2xl font-light mb-12 group-hover:text-white transition-colors leading-relaxed">The shift toward 7B parameter localized intelligence on silicon.</p>
-                            <div class="flex items-center gap-6 text-orange-500 font-black text-[12px] uppercase tracking-[0.6em]">Protocol: SLM_DISTILL <i data-lucide="zap" class="w-8 h-8 animate-pulse"></i></div>
+                            <h3 class="text-5xl md:text-[7.5rem] font-black italic tracking-tighter uppercase mb-8 leading-[0.85] text-white">Small <br> Models.</h3>
+                            <p class="text-gray-400 max-w-xl text-xl font-light mb-10 group-hover:text-white transition-colors leading-relaxed">Local intelligence on silicon architecture.</p>
+                            <div class="flex items-center gap-6 text-orange-500 font-black text-[11px] uppercase tracking-[0.6em]">Protocol: SLM_DISTILL <i data-lucide="zap" class="w-6 h-6 animate-pulse"></i></div>
                         </div>
                     </a>
                 </div>
 
-                <div class="md:col-span-4 h-[750px] card-reveal">
-                    <a href="article-4.html" class="bento-card h-full p-12 group">
+                <div class="md:col-span-4 h-[600px] md:h-[750px] card-reveal">
+                    <a href="article-4.html" class="bento-card h-full p-10 group text-right">
                         <div class="card-img-layer">
                             <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                             <div class="card-vignette"></div>
                         </div>
-                        <div class="relative z-10 mt-auto bento-content text-right">
-                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 004</span>
-                            <h3 class="text-5xl font-black uppercase italic tracking-tighter mb-8 text-white">Agentic <br> Loops.</h3>
-                            <p class="text-gray-500 text-lg mb-12 leading-relaxed italic">Moving beyond passive text to autonomous action.</p>
+                        <div class="relative z-10 mt-auto bento-content">
+                            <span class="text-orange-500 font-black tracking-widest text-[10px] uppercase mb-6 block">Transmission // 004</span>
+                            <h3 class="text-4xl md:text-5xl font-black uppercase italic tracking-tighter mb-8 text-white">Agentic <br> Loops.</h3>
+                            <p class="text-gray-500 text-base mb-10 leading-relaxed italic">Moving beyond passive text to autonomous action.</p>
                             <div class="flex justify-end">
-                                <div class="w-20 h-20 rounded-full border border-white/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-3xl"><i data-lucide="brain-circuit" class="w-10 h-10"></i></div>
+                                <div class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-all shadow-3xl"><i data-lucide="brain-circuit" class="w-8 h-8"></i></div>
                             </div>
                         </div>
                     </a>
                 </div>
 
-                <div class="md:col-span-4 h-[550px] card-reveal">
-                    <a href="article-3.html" class="bento-card h-full p-12 group">
+                <div class="md:col-span-4 h-[500px] card-reveal">
+                    <a href="article-3.html" class="bento-card h-full p-10 group">
                         <div class="card-img-layer">
                             <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                             <div class="card-vignette"></div>
                         </div>
                         <div class="relative z-10 bento-content">
-                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 003</span>
-                            <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Low Level <br> Theory.</h3>
-                            <p class="text-gray-500 text-base mb-12 font-light leading-relaxed group-hover:text-white transition-colors">Why C logic remains the secret weapon for AI systems.</p>
+                            <span class="text-orange-500 font-black tracking-widest text-[10px] uppercase mb-6 block">Transmission // 003</span>
+                            <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Low Level <br> Theory.</h3>
+                            <p class="text-gray-500 text-sm mb-10 font-light leading-relaxed">Why C logic is still the secret weapon for AI systems.</p>
                             <i data-lucide="code" class="w-8 h-8 text-orange-500"></i>
                         </div>
                     </a>
                 </div>
 
-                <div class="md:col-span-4 h-[550px] card-reveal">
-                    <a href="article-2.html" class="bento-card h-full p-12 group">
+                <div class="md:col-span-4 h-[500px] card-reveal">
+                    <a href="article-2.html" class="bento-card h-full p-10 group">
                         <div class="card-img-layer">
-                            <img src="https://images.unsplash.com/photo-1591815302525-756713cc9c37?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                             <div class="card-vignette"></div>
                         </div>
                         <div class="relative z-10 bento-content">
-                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 002</span>
-                            <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Silicon <br> Edge.</h3>
-                            <p class="text-gray-500 text-base mb-12 font-light leading-relaxed group-hover:text-white transition-colors">Optimizing M-Series hardware for training throughput.</p>
+                            <span class="text-orange-500 font-black tracking-widest text-[10px] uppercase mb-6 block">Transmission // 002</span>
+                            <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Silicon <br> Edge.</h3>
+                            <p class="text-gray-500 text-sm mb-10 font-light leading-relaxed">Optimizing M-Series hardware for training throughput.</p>
                             <i data-lucide="cpu" class="w-8 h-8 text-orange-500"></i>
                         </div>
                     </a>
                 </div>
 
-                <div class="md:col-span-4 h-[550px] card-reveal">
-                    <a href="article-1.html" class="bento-card h-full p-12 group">
+                <div class="md:col-span-4 h-[500px] card-reveal">
+                    <a href="article-1.html" class="bento-card h-full p-10 group">
                         <div class="card-img-layer">
                             <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover">
                             <div class="card-vignette"></div>
                         </div>
                         <div class="relative z-10 bento-content">
-                            <span class="text-orange-500 font-black tracking-widest text-[11px] uppercase mb-8 block">Transmission // 001</span>
-                            <h3 class="text-4xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Static <br> Protocol.</h3>
-                            <p class="text-gray-500 text-base mb-12 font-light leading-relaxed group-hover:text-white transition-colors">The architectural choice of GitHub Pages.</p>
+                            <span class="text-orange-500 font-black tracking-widest text-[10px] uppercase mb-6 block">Transmission // 001</span>
+                            <h3 class="text-3xl font-black uppercase italic tracking-tighter mb-8 text-white leading-tight">Static <br> Protocol.</h3>
+                            <p class="text-gray-500 text-sm mb-10 font-light leading-relaxed">The architectural choice of GitHub Pages.</p>
                             <i data-lucide="globe" class="w-8 h-8 text-orange-500"></i>
                         </div>
                     </a>
@@ -314,51 +315,50 @@
         </div>
     </section>
 
-    <footer class="py-48 border-t border-white/5 px-10 relative bg-black">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-24 items-start mb-48">
-            
+    <footer class="py-32 md:py-48 border-t border-white/5 px-6 md:px-10 relative bg-black">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-20 md:gap-24 items-start mb-32 md:mb-48">
             <div class="col-span-1">
-                <div class="flex items-center gap-4 mb-12">
-                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-14 h-14 rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000">
+                <div class="flex items-center gap-4 mb-10 md:mb-12">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-12 h-12 md:w-14 md:h-14 rounded-2xl grayscale hover:grayscale-0 transition-all duration-1000">
                     <span class="text-3xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
                 </div>
-                <p class="text-gray-600 text-[11px] font-black uppercase tracking-[0.5em] leading-loose">
-                    Decipher the Aether. <br> SYSTEM_STABLE // 2026. <br> DELHI REPOSITORY // ACTIVE.
+                <p class="text-gray-600 text-[10px] md:text-[11px] font-black uppercase tracking-[0.5em] leading-loose">
+                    Decipher the Aether. <br> SYSTEM_STABLE // 2026. <br> GLOBAL REPOSITORY // ACTIVE.
                 </p>
             </div>
 
-            <div class="flex flex-col gap-12">
-                <h5 class="text-orange-500 text-[11px] font-black uppercase tracking-widest">Article Transmissions</h5>
-                <nav class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-widest text-gray-500">
-                    <a href="article-5.html" class="hover:text-white transition-all">005 // SLM Distillation</a>
+            <div class="flex flex-col gap-10 md:gap-12">
+                <h5 class="text-orange-500 text-[10px] md:text-[11px] font-black uppercase tracking-widest">Feed Node</h5>
+                <nav class="flex flex-col gap-5 text-[10px] md:text-[11px] font-black uppercase tracking-widest text-gray-500">
+                    <a href="article-5.html" class="hover:text-white transition-all">005 // SLM Logic</a>
                     <a href="article-4.html" class="hover:text-white transition-all">004 // Agentic AI</a>
                     <a href="article-3.html" class="hover:text-white transition-all">003 // Future of C</a>
                     <a href="article-2.html" class="hover:text-white transition-all">002 // Silicon DS</a>
-                    <a href="article-1.html" class="hover:text-white transition-all">001 // Static Hosting</a>
+                    <a href="article-1.html" class="hover:text-white transition-all">001 // Static Edge</a>
                 </nav>
             </div>
 
-            <div class="flex flex-col gap-12">
-                <h5 class="text-orange-500 text-[11px] font-black uppercase tracking-widest">System Registry</h5>
-                <nav class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-widest text-gray-500">
-                    <a href="about.html" class="hover:text-white transition-all">Insights (Registry)</a>
-                    <a href="portfolio.html" class="hover:text-white transition-all">Portfolio Projects</a>
-                    <a href="contact.html" class="hover:text-white transition-all">Uplink (Contact)</a>
+            <div class="flex flex-col gap-10 md:gap-12">
+                <h5 class="text-orange-500 text-[10px] md:text-[11px] font-black uppercase tracking-widest">System Registry</h5>
+                <nav class="flex flex-col gap-5 text-[10px] md:text-[11px] font-black uppercase tracking-widest text-gray-500">
+                    <a href="about.html" class="hover:text-white transition-all">Insights</a>
+                    <a href="portfolio.html" class="hover:text-white transition-all">Portfolio</a>
+                    <a href="contact.html" class="hover:text-white transition-all">Contact Hub</a>
                     <a href="sitemap.html" class="hover:text-white transition-all">Sitemap Node</a>
                     <a href="privacy.html" class="hover:text-white transition-all">Privacy Protocol</a>
                 </nav>
             </div>
 
-            <div class="flex flex-col gap-12 text-right">
-                <h5 class="text-orange-500 text-[11px] font-black uppercase tracking-widest">Connect Hub</h5>
-                <div class="flex gap-6 justify-end">
-                    <a href="https://github.com/yashraj63802" target="_blank" class="w-16 h-16 rounded-3xl glass-card flex items-center justify-center text-gray-500 hover:text-white transition-all"><i data-lucide="github"></i></a>
-                    <a href="https://linkedin.com" target="_blank" class="w-16 h-16 rounded-3xl glass-card flex items-center justify-center text-gray-500 hover:text-blue-500 transition-all"><i data-lucide="linkedin"></i></a>
+            <div class="flex flex-col gap-10 md:gap-12 md:text-right">
+                <h5 class="text-orange-500 text-[10px] md:text-[11px] font-black uppercase tracking-widest">Connect</h5>
+                <div class="flex gap-6 md:justify-end">
+                    <a href="https://github.com/yashraj63802" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-500 hover:text-white transition-all"><i data-lucide="github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-500 hover:text-blue-500 transition-all"><i data-lucide="linkedin"></i></a>
                 </div>
             </div>
         </div>
-        <div class="border-t border-white/5 pt-20 text-center">
-            <p class="text-gray-700 text-[10px] font-black uppercase tracking-[0.8em]">© 2026 AETHER TECH REPOSITORY // YASH RAJ DWIVEDI // STATUS_SYNCED.</p>
+        <div class="border-t border-white/5 pt-16 md:pt-20 text-center">
+            <p class="text-gray-700 text-[9px] md:text-[10px] font-black uppercase tracking-[0.8em]">© 2026 AETHER TECH REPOSITORY // YASH RAJ DWIVEDI // STATUS_SYNCED.</p>
         </div>
     </footer>
 
@@ -366,7 +366,28 @@
         lucide.createIcons();
         gsap.registerPlugin(ScrollTrigger);
 
-        // THREE.JS CORE (Neural Data Field)
+        // MOBILE MENU LOGIC FIXED
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        mobileBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if(isMenuOpen) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                gsap.from(".mobile-link", { opacity: 0, y: 30, stagger: 0.1, duration: 0.4 });
+                menuIcon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                menuIcon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+
+        // THREE.JS NEURAL DATA CORE
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -375,13 +396,11 @@
 
         const starGeo = new THREE.BufferGeometry();
         const starPoints = [];
-        for(let i=0; i<5000; i++) {
-            starPoints.push((Math.random() - 0.5) * 45);
-            starPoints.push((Math.random() - 0.5) * 45);
-            starPoints.push((Math.random() - 0.5) * 45);
+        for(let i=0; i<4500; i++) {
+            starPoints.push((Math.random() - 0.5) * 45, (Math.random() - 0.5) * 45, (Math.random() - 0.5) * 45);
         }
         starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPoints, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0xea580c, size: 0.02, transparent: true, opacity: 0.5 });
+        const starMat = new THREE.PointsMaterial({ color: 0xea580c, size: 0.02, transparent: true, opacity: 0.4 });
         const stars = new THREE.Points(starGeo, starMat);
         scene.add(stars);
 
@@ -395,20 +414,19 @@
         }
         animateNeural();
 
-        // MAGNETIC 3D TILT & POP-UP LOGIC
+        // MAGNETIC 3D TILT & POP-UP
         const cards = document.querySelectorAll('.bento-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
+                if(window.innerWidth < 1024) return; // Disable on small screens for better scroll
                 const rect = card.getBoundingClientRect();
                 const x = (e.clientX - rect.left) / rect.width;
                 const y = (e.clientY - rect.top) / rect.height;
                 const tiltX = (y - 0.5) * 20;
                 const tiltY = (x - 0.5) * -20;
-                // Pop Up toward camera on hover
                 card.style.transform = `perspective(1000px) translateZ(80px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
             });
             card.addEventListener('mouseleave', () => {
-                // Pop Back down
                 card.style.transform = `perspective(1000px) translateZ(0px) rotateX(0deg) rotateY(0deg)`;
             });
         });
