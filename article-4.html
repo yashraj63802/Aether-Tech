@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" style="background-color: #020617 !important;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond Chatbots: Building Agentic AI Systems | Aether Tech</title>
+    
+    <meta name="description" content="Moving beyond passive AI. We deconstruct Agentic AI systems—autonomous software entities that can plan, reason, and operate tools in the real world.">
+    <meta name="keywords" content="Agentic AI, Autonomous Agents, MCP Protocol, LangChain, Reasoning Loops, VIPS AI&DS, Yash Raj Dwivedi">
+    <meta name="author" content="Yash Raj Dwivedi">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Beyond Chatbots: Building Agentic AI Systems",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+      "author": {
+        "@type": "Person",
+        "name": "Yash Raj Dwivedi",
+        "jobTitle": "AI & DS Student",
+        "affiliation": "VIPS"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aether Tech"
+      },
+      "datePublished": "2026-03-20"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        /* THE ULTIMATE DARK FIX */
+        html, body { 
+            background-color: #020617 !important; 
+            color: #f1f5f9; 
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
+        }
+        
+        /* Restricted Gradient to prevent "White/Gray" washing */
+        .aurora-bg { 
+            background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.12), rgba(2, 6, 23, 1) 600px); 
+        }
+
+        .glass-nav { background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(25px); border-b: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .orange-glow { text-shadow: 0 0 35px rgba(234, 88, 12, 0.6); }
+        
+        /* Reading Progress Bar */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ea580c; z-index: 1000; width: 0%; box-shadow: 0 0 20px #ea580c; transition: width 0.1s ease-out; }
+
+        /* Typography Master Scale */
+        .article-body p { margin-bottom: 2.5rem; line-height: 2.1; font-size: 1.25rem; color: #cbd5e1; font-weight: 400; }
+        .article-body h2 { color: #ffffff; font-size: 3rem; font-weight: 900; margin-top: 6rem; margin-bottom: 2.5rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 8px solid #ea580c; padding-left: 2rem; }
+        .article-body h3 { color: #f8fafc; font-size: 1.8rem; font-weight: 700; margin-top: 4.5rem; margin-bottom: 1.5rem; color: #ea580c; }
+        .article-body blockquote { border-left: 8px solid #ea580c; background: rgba(255, 255, 255, 0.03); padding: 3rem; margin: 5rem 0; border-radius: 0 2rem 2rem 0; color: #ffffff; font-style: italic; font-size: 1.55rem; line-height: 1.8; }
+        
+        .image-container { border-radius: 2.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 60px 120px -30px rgba(0,0,0,1); margin: 6rem 0; }
+        .image-caption { text-align: center; color: #64748b; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.25em; margin-top: -4.5rem; margin-bottom: 7rem; font-weight: 800; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden aurora-bg">
+
+    <div id="progress-bar"></div>
+
+    <nav class="fixed w-full z-50 px-6 py-4 glass-nav">
+        <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-lg object-cover border border-orange-500/30 group-hover:rotate-12 transition-transform">
+                <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+            </a>
+            <div class="hidden md:flex gap-12 text-[10px] font-black tracking-[0.25em] uppercase text-gray-400">
+                <a href="index.html" class="hover:text-orange-500 transition">Neural Feed</a>
+                <a href="about.html" class="hover:text-white transition">Insights</a>
+                <a href="portfolio.html" class="hover:text-white transition">Portfolio</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block bg-orange-600 hover:bg-orange-500 px-6 py-2 rounded-lg text-xs font-black uppercase tracking-widest text-white transition-all shadow-[0_0_25px_rgba(234,88,12,.4)]">Subscribe</button>
+                <button id="mobile-menu-btn" class="md:hidden text-orange-500"><i data-lucide="menu"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-48 pb-24 px-6 lg:pt-64 lg:pb-40 overflow-hidden border-b border-white/5" style="background-color: #020617;">
+        <div class="absolute inset-0 z-0 opacity-30 scale-105">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000" alt="Agentic AI Visualization" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative z-10 hero-anim">
+            <div class="flex flex-wrap items-center gap-6 mb-10">
+                <span class="px-5 py-2 rounded-full border border-orange-500/40 bg-orange-500/15 text-orange-400 text-[10px] font-black tracking-[0.25em] uppercase">Transmission // 004</span>
+                <span class="text-gray-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> March 20, 2026</span>
+                <span class="text-green-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Verified</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black uppercase italic leading-[0.85] text-white mb-10 tracking-tighter">Beyond <br> <span class="text-orange-500 orange-glow">Chatbots.</span></h1>
+            <p class="text-2xl text-gray-400 max-w-2xl leading-relaxed font-light italic border-l-4 border-orange-500 pl-8 bg-white/5 py-4">From passive assistants to autonomous entities: Understanding the shift toward Agentic AI systems.</p>
+        </div>
+    </header>
+
+    <main class="max-w-[100rem] mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+        
+        <aside class="hidden lg:block lg:col-span-3">
+            <div class="sticky top-32 glass-card p-10 rounded-[2.5rem] sidebar-anim">
+                <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-10 border-b border-gray-800 pb-6">Log Index</h4>
+                <nav id="section-nav" class="space-y-8 text-[11px] font-black uppercase tracking-[0.2em]">
+                    <a href="#prologue" class="block text-orange-500 hover:pl-2 transition-all">0.0 // The passive Era</a>
+                    <a href="#definition" class="block text-gray-500 hover:text-white transition-all">1.0 // Defining Agency</a>
+                    <a href="#logic" class="block text-gray-500 hover:text-white transition-all">2.0 // Tool-Use Logic</a>
+                    <a href="#reasoning" class="block text-gray-500 hover:text-white transition-all">3.0 // The TAO Loop</a>
+                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">4.0 // Deployment</a>
+                </nav>
+
+                <div class="mt-20 pt-10 border-t border-gray-900">
+                    <p class="text-[9px] font-black tracking-widest text-gray-600 uppercase mb-8">Author Node</p>
+                    <div class="flex gap-6">
+                        <a href="https://github.com/yashraj63802" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-400 hover:text-orange-500 transition-all"><i data-lucide="github"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-400 hover:text-blue-500 transition-all"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article id="prologue" class="lg:col-span-6 article-body content-anim scroll-mt-32">
+            <p><span class="text-orange-500 font-bold text-6xl float-left mr-5 leading-none mt-2">W</span>e have reached a point where "talking to a computer" is no longer impressive. The novelty of the chatbot has worn off. As an AI & DS student, I see the landscape shifting toward a much more powerful concept: <strong>Agency</strong>. If you are still prompting for text, you are using the AI in its passive mode.</p>
+
+            <p>The true power of modern intelligence lies in its ability to <em>act</em> independently. Agentic AI represents the bridge between a search engine and a colleague. It doesn't just give you the recipe; it enters the kitchen and cooks the meal.</p>
+
+            <div id="definition" class="scroll-mt-32">
+                <h2>1.0 // Defining Agency</h2>
+                <p>What is an agent? In the simplest terms, an agent is an autonomous software entity that can take high-level goals and break them into actionable tasks. Unlike a chatbot that follows a linear back-and-forth, an agent can pause, reflect, and decide to use an external tool to find the answer.</p>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="Technical Logic Abstract">
+                </div>
+                <p class="image-caption">Fig 1. Visualizing the internal reasoning pathways required for tool-use selection.</p>
+
+                <p>This autonomy is what we call "Closed Loop Reasoning." The model is no longer just predicting the next word; it is predicting the next *action*.</p>
+            </div>
+
+            <blockquote>
+                "Agents are not better at talking; they are better at doing. They turn the large language model into an OS for tasks."
+            </blockquote>
+
+            <div id="logic" class="scroll-mt-32">
+                <h2>2.0 // Tool-Use and MCP</h2>
+                <p>The core mechanism behind this autonomy is **Tool-Use**. An agent is connected to a set of functions (e.g., searching the web, editing a file, running a Python script). The Model-Context-Protocol (MCP) allows these agents to talk to external software without custom code for every single API.</p>
+            </div>
+
+            <div class="my-20 rounded-[2.5rem] overflow-hidden border border-gray-800 shadow-3xl bg-black group">
+                <div class="aspect-video w-full relative">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/fJ81HbutaIM" title="Technical Project Hosting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="bg-[#0f172a] px-8 py-5 border-t border-gray-800 flex items-center justify-between">
+                    <span class="text-[10px] text-orange-500 font-black tracking-[0.4em] uppercase flex items-center gap-3"><i data-lucide="play-circle" class="w-5 h-5"></i> System_Log // 04</span>
+                    <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase italic">Deploying Technical Hubs</span>
+                </div>
+            </div>
+
+            <div id="reasoning" class="scroll-mt-32">
+                <h2>3.0 // The TAO Loop</h2>
+                <p>Behind every successful agent is the **Thought-Action-Observation (TAO)** loop. The agent thinks about the goal, decides on an action, and then observes the result. If the result is a failure, it thinks again and tries a different action. This recursive loop is what makes it "Agentic."</p>
+
+                <div class="my-12 rounded-3xl overflow-hidden border border-gray-800 shadow-2xl">
+<pre class="!m-0 !bg-[#020617] !p-10"><code class="language-python">class AgentCore:
+    def solve(self, goal):
+        plan = self.generate_initial_plan(goal)
+        while not plan.done:
+            thought = self.reason(plan)
+            # EXPLICIT ACTION TAKEN
+            result = self.execute_tool(thought.action)
+            plan.update(result)
+            print(f">> Agent state: {plan.status}")</code></pre>
+                </div>
+            </div>
+
+            <h2 id="conclusion">4.0 // Scale Locally</h2>
+            <p>Building these systems requires robust local hardware. As a student at VIPS, I utilize my Mac's Unified Memory to run local vector databases, allowing my agents to have long-term memory without cloud latency. Agency is the future—and it starts with the hardware on your desk.</p>
+
+            <div class="mt-24 pt-16 border-t border-gray-900">
+                <div class="glass-card p-12 rounded-[3.5rem] flex flex-col sm:flex-row items-center gap-12 group">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Author" class="w-32 h-32 rounded-[2rem] border-2 border-orange-500/30 object-cover rotate-3 group-hover:rotate-0 transition-transform duration-500 shadow-2xl">
+                    <div class="text-center sm:text-left">
+                        <h4 class="text-white font-black text-4xl uppercase italic tracking-tighter">Yash Raj <span class="text-orange-500">Dwivedi</span></h4>
+                        <p class="text-xs font-black tracking-[0.4em] text-orange-400 uppercase mb-5 mt-2">B.Tech AI & DS // VIPS</p>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">Frontend architect and data science student. Building AetherTech to explore the limits of Agentic AI architectures.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-24 pt-20 border-t border-gray-900">
+                <h3 class="text-3xl font-black text-white mb-12 flex items-center gap-5 tracking-tighter"><i data-lucide="message-square" class="text-orange-500 w-8 h-8"></i> Community Logs (3)</h3>
+                <div class="space-y-10">
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-purple-600 flex items-center justify-center font-black text-white text-xs">SD</div>
+                            <div><p class="text-white font-bold text-base">Sarah Dev</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 21, 2026</p></div>
+                        </div>
+                        <p class="text-gray-400 text-sm italic">"The point about recursive self-correction in the TAO loop is spot on. Excellent read."</p>
+                    </div>
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center font-black text-white text-xs">MK</div>
+                            <div><p class="text-white font-bold text-base">Marcus K.</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 22, 2026</p></div>
+                        </div>
+                        <p class="text-gray-400 text-sm italic">"I'm using MCP for my final year project. It's truly a game changer for standardizing tool-use."</p>
+                    </div>
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-600 flex items-center justify-center font-black text-white text-xs">RJ</div>
+                            <div><p class="text-white font-bold text-base">Rahul J.</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 23, 2026</p></div>
+                        </div>
+                        <p class="text-gray-400 text-sm italic">"Love the human tone. Makes a complex topic very approachable for someone new to agents."</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <aside class="hidden lg:block lg:col-span-3"></aside>
+    </main>
+
+    <footer class="py-24 border-t border-gray-900 px-6 bg-[#020617]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-20">
+            <div class="col-span-1 flex flex-col items-center md:items-start">
+                <div class="flex items-center gap-4 mb-10">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-xl grayscale group-hover:grayscale-0 transition-all">
+                    <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+                </div>
+                <p class="text-gray-600 text-[10px] font-black uppercase tracking-[0.3em] leading-loose">Decipher the Aether. <br> System Stable // 2026.</p>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Transmissions</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="article-1.html" class="hover:text-orange-500 transition">GitHub Pages</a>
+                    <a href="article-2.html" class="hover:text-orange-500 transition">Hardware DS</a>
+                    <a href="article-4.html" class="text-orange-500">Agentic AI</a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Registry</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+                    <a href="terms.html" class="hover:text-white transition">Terms</a>
+                    <a href="sitemap.html" class="hover:text-white transition">Sitemap</a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">System</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="contact.html" class="hover:text-white transition">Contact Portal</a>
+                    <a href="index.html" class="hover:text-white transition">Core Feed</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+        gsap.from(".hero-anim", { opacity: 0, y: 100, duration: 2, ease: "expo.out" });
+        gsap.from(".sidebar-anim", { opacity: 0, x: -80, duration: 1.5, delay: 0.8, ease: "power4.out" });
+        gsap.from(".content-anim", { opacity: 0, y: 120, duration: 1.5, delay: 1, ease: "power4.out" });
+    </script>
+</body>
+</html>
