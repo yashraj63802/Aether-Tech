@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" style="background-color: #020617 !important;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rise of SLMs: Efficiency Over Scale | Aether Tech</title>
+    
+    <meta name="description" content="Transmission 005: Why 2026 is the year of the Small Language Model. Analyzing 1B-7B parameter models on local silicon using quantization and distillation.">
+    <meta name="keywords" content="Small Language Models, SLM, Quantization, GGUF, Llama 3, Local AI, Apple Silicon, VIPS AI&DS, Yash Raj Dwivedi">
+    <meta name="author" content="Yash Raj Dwivedi">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "The Rise of SLMs: Why Efficiency is the New Frontier in Artificial Intelligence",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+      "author": {
+        "@type": "Person",
+        "name": "Yash Raj Dwivedi",
+        "jobTitle": "AI & DS Student",
+        "affiliation": "VIPS"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Aether Tech",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://i.ibb.co/WW5S09TJ/Untitled-design.jpg"
+        }
+      },
+      "datePublished": "2026-03-20",
+      "mainEntityOfPage": "https://yashraj63802.github.io/Aether-Tech/article-5.html"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        /* CORE OBSIDIAN BRANDING */
+        html, body { 
+            background-color: #020617 !important; 
+            color: #f1f5f9; 
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0; padding: 0; overflow-x: hidden;
+        }
+        
+        .aurora-bg { 
+            background: radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.12), rgba(2, 6, 23, 1) 800px); 
+        }
+
+        .glass-nav { background: rgba(2, 6, 23, 0.98); backdrop-filter: blur(25px); border-b: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .orange-glow { text-shadow: 0 0 40px rgba(234, 88, 12, 0.6); }
+        
+        /* Reading Progress */
+        #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: #ea580c; z-index: 1000; width: 0%; box-shadow: 0 0 20px #ea580c; }
+
+        /* Typography Mastery */
+        .article-body p { margin-bottom: 2.8rem; line-height: 2.2; font-size: 1.25rem; color: #cbd5e1; font-weight: 400; }
+        .article-body h2 { color: #ffffff; font-size: 3.5rem; font-weight: 900; margin-top: 7rem; margin-bottom: 2.5rem; text-transform: uppercase; font-style: italic; letter-spacing: -0.05em; border-left: 10px solid #ea580c; padding-left: 2.5rem; background: linear-gradient(90deg, rgba(234, 88, 12, 0.08), transparent); }
+        .article-body h3 { color: #f8fafc; font-size: 2rem; font-weight: 700; margin-top: 5rem; margin-bottom: 2rem; color: #ea580c; }
+        .article-body blockquote { border-left: 8px solid #ea580c; background: rgba(255, 255, 255, 0.03); padding: 3.5rem; margin: 6rem 0; border-radius: 0 2.5rem 2.5rem 0; color: #ffffff; font-style: italic; font-size: 1.65rem; line-height: 1.8; }
+        .drop-cap { float: left; font-size: 8rem; line-height: 1; font-weight: 900; color: #ea580c; margin-right: 1.5rem; margin-top: 0.5rem; text-transform: uppercase; font-style: italic; }
+        
+        /* Visual Assets Containers */
+        .image-container { border-radius: 3rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 80px 150px -40px rgba(0,0,0,1); margin: 7rem 0; }
+        .image-caption { text-align: center; color: #64748b; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.3em; margin-top: -5rem; margin-bottom: 8rem; font-weight: 800; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #ea580c; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden aurora-bg">
+
+    <div id="progress-bar"></div>
+
+    <nav class="fixed w-full z-50 px-6 py-4 glass-nav">
+        <div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-lg object-cover border border-orange-500/30 group-hover:rotate-12 transition-transform">
+                <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+            </a>
+            <div class="hidden md:flex gap-12 text-[10px] font-black tracking-[0.25em] uppercase text-gray-400">
+                <a href="index.html" class="hover:text-orange-500 transition">Neural Feed</a>
+                <a href="about.html" class="hover:text-white transition">Insights</a>
+                <a href="portfolio.html" class="hover:text-white transition">Portfolio</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="hidden md:block bg-orange-600 hover:bg-orange-500 px-6 py-2 rounded-lg text-xs font-black uppercase tracking-widest text-white transition-all shadow-[0_0_25px_rgba(234,88,12,.4)]">Subscribe</button>
+                <button id="mobile-menu-btn" class="md:hidden text-orange-500"><i data-lucide="menu"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-48 pb-24 px-6 lg:pt-64 lg:pb-40 overflow-hidden border-b border-white/5" style="background-color: #020617;">
+        <div class="absolute inset-0 z-0 opacity-40 scale-105">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000" alt="Silicon Brain Pathways" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/40 to-transparent"></div>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative z-10 hero-anim">
+            <div class="flex flex-wrap items-center gap-6 mb-10">
+                <span class="px-5 py-2 rounded-full border border-orange-500/40 bg-orange-500/15 text-orange-400 text-[10px] font-black tracking-[0.25em] uppercase">Transmission // 005</span>
+                <span class="text-gray-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4"></i> March 20, 2026</span>
+                <span class="text-green-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2"><i data-lucide="cpu" class="w-4 h-4"></i> M2 Pro Tested</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black uppercase italic leading-[0.85] text-white mb-10 tracking-tighter">Small <br> <span class="text-orange-500 orange-glow">Language Models.</span></h1>
+            <p class="text-2xl text-gray-400 max-w-3xl leading-relaxed font-light italic border-l-4 border-orange-500 pl-8 bg-white/5 py-4">The paradigm shift from "Massive Cloud Models" to "Optimized Local Intelligence": Why 2026 is the year of the SLM.</p>
+        </div>
+    </header>
+
+    <main class="max-w-[100rem] mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+        
+        <aside class="hidden lg:block lg:col-span-3">
+            <div class="sticky top-32 glass-card p-10 rounded-[2.5rem] sidebar-anim">
+                <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-10 border-b border-gray-800 pb-6">Architecture Index</h4>
+                <nav id="section-nav" class="space-y-8 text-[11px] font-black uppercase tracking-[0.2em]">
+                    <a href="#prologue" class="block text-orange-500 hover:pl-2 transition-all">0.0 // Paradigm Shift</a>
+                    <a href="#definition" class="block text-gray-500 hover:text-white transition-all">1.0 // Distillation Logic</a>
+                    <a href="#quantization" class="block text-gray-500 hover:text-white transition-all">2.0 // GGUF Mastery</a>
+                    <a href="#benchmarks" class="block text-gray-500 hover:text-white transition-all">3.0 // Silicon Benchmarks</a>
+                    <a href="#conclusion" class="block text-gray-500 hover:text-white transition-all">4.0 // Local Future</a>
+                </nav>
+
+                <div class="mt-20 pt-10 border-t border-gray-900">
+                    <p class="text-[9px] font-black tracking-widest text-gray-600 uppercase mb-8">Node Connections</p>
+                    <div class="flex gap-6">
+                        <a href="https://github.com/yashraj63802" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-400 hover:text-orange-500 transition-all"><i data-lucide="github"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="w-14 h-14 rounded-3xl glass-card flex items-center justify-center text-gray-400 hover:text-blue-500 transition-all"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <article id="prologue" class="lg:col-span-6 article-body content-anim scroll-mt-32">
+            <p><span class="drop-cap">F</span>or the better part of the last decade, the Artificial Intelligence narrative was a war of numbers. We watched with bated breath as parameter counts surged from GPT-2’s 1.5 billion to GPT-4’s rumored 1.8 trillion. But in 2026, as an AI & DS student at VIPS, I am witnessing a fundamental technical counter-revolution: the rise of the **Small Language Model (SLM)**.</p>
+
+            <p>The "Bigger is Better" philosophy is reaching its economic and physical limits. We are realizing that for 90% of technical engineering tasks—code generation, data structuralization, and autonomous reasoning—we do not need a model that knows the nuances of ancient history. We need distilled, high-precision reasoning engines that live inside our own silicon architecture. Welcome to the era of local intelligence.</p>
+
+            <div id="definition" class="scroll-mt-32">
+                <h2>1.0 // Distillation Logic: How SLMs Think</h2>
+                <p>The core superpower of an SLM (typically defined as models between 1B and 10B parameters) isn't their size, but the quality of their training data. This is achieved through a process called <strong>Knowledge Distillation</strong>. Imagine a massive "Teacher" model (like Claude 3.5 Sonnet) supervising the training of a "Student" model (like Phi-4 or Llama-3-8B). The student doesn't just learn text; it learns the teacher's latent reasoning patterns.</p>
+                
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="Technical Logic Detail" class="w-full">
+                </div>
+                <p class="image-caption">Fig 1. High-precision logic flows enabled by distilled synthetic training datasets.</p>
+
+                <p>By using synthetic datasets curated by larger models, we can pack "GPT-3.5 levels of intelligence" into a 3.8 billion parameter model like Microsoft's Phi series. On local Apple Silicon, this translates to nearly instantaneous responses and a total bypass of cloud API costs.</p>
+            </div>
+
+            <blockquote>
+                "Efficiency is the ultimate form of technical sophistication. Running a 7B model locally is the difference between asking a cloud for help and having the brain inside your machine."
+            </blockquote>
+
+            <div id="quantization" class="scroll-mt-32">
+                <h2>2.0 // GGUF Mastery & Memory Compression</h2>
+                <p>How does an 8B parameter model fit into the limited Unified Memory of a MacBook? The answer lies in **Quantization**. Most models are trained in 16-bit precision (FP16). By compressing these weights into 4-bit or 8-bit integers (using the GGUF format), we reduce the memory footprint by over 70% with negligible loss in accuracy.</p>
+
+                <div class="my-16 rounded-[2.5rem] overflow-hidden border border-gray-800 shadow-3xl bg-black group">
+                    <div class="aspect-video w-full relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/WmvZwR4rKJg" title="Quantization Explained" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-[#0f172a] px-8 py-5 border-t border-gray-800 flex items-center justify-between">
+                        <span class="text-[10px] text-orange-500 font-black tracking-[0.4em] uppercase flex items-center gap-3"><i data-lucide="brain" class="w-5 h-5"></i> Theory_Log // 01</span>
+                        <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase italic">The Math of Compression: GPTQ vs GGUF.</span>
+                    </div>
+                </div>
+
+                <p>For an M2 Pro user, this is the "Unlock Key." A 4-bit quantized Llama-3-8B takes up roughly 5GB of RAM, leaving 11GB free for your IDE, Docker containers, and web browsers. This is the hardware-software handshake that makes localized DS viable.</p>
+            </div>
+
+            <div id="benchmarks" class="scroll-mt-32">
+                <h2>3.0 // Local Silicon Benchmarks</h2>
+                <p>Tokens per second (TPS) is the heartbeat of local AI. On an Apple M2 Pro, we aren't just aiming for "functional"; we are aiming for "fluid." When a model runs entirely on your GPU cores, you can hit speeds that feel magical.</p>
+
+                <div class="my-16 rounded-[2.5rem] overflow-hidden border border-gray-800 shadow-3xl bg-black group">
+                    <div class="aspect-video w-full relative">
+                        <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/wQxawC3sv68" title="SLM Performance Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-[#0f172a] px-8 py-5 border-t border-gray-800 flex items-center justify-between">
+                        <span class="text-[10px] text-orange-500 font-black tracking-[0.4em] uppercase flex items-center gap-3"><i data-lucide="play-circle" class="w-5 h-5"></i> Performance_Log // 02</span>
+                        <span class="text-[10px] text-gray-500 font-bold tracking-widest uppercase italic">Real-world Token Throughput on Consumer Silicon.</span>
+                    </div>
+                </div>
+
+                <div class="my-12 rounded-3xl overflow-hidden border border-gray-800 shadow-2xl">
+                    <div class="bg-[#0f172a] px-6 py-4 border-b border-gray-800 flex items-center gap-3">
+                        <div class="flex gap-2"><div class="w-3 h-3 rounded-full bg-red-500/40"></div><div class="w-3 h-3 rounded-full bg-yellow-500/40"></div><div class="w-3 h-3 rounded-full bg-green-500/40"></div></div>
+                        <span class="text-[10px] text-gray-500 font-black tracking-widest uppercase ml-4">local_inference_loop.py</span>
+                    </div>
+<pre class="!m-0 !bg-[#020617] !p-10"><code class="language-python">from llama_cpp import Llama
+
+# CONFIGURATION FOR M2 PRO GPU HANDSHAKE
+llm = Llama(
+    model_path="./models/phi-4-distilled-q4.gguf",
+    n_gpu_layers=-1, # PUSH ALL OPERATIONS TO METAL GPU
+    n_ctx=4096,
+    verbose=False
+)
+
+def local_transmit(prompt):
+    print(">> Transmission Initialized...")
+    output = llm(
+        f"INSTRUCTION: {prompt}\nRESPONSE:",
+        max_tokens=512,
+        stop=["INSTRUCTION:"],
+        echo=False
+    )
+    return output['choices'][0]['text']
+
+# Benchmark: Explain Matrix Multiplication
+print(local_transmit("Explain the math of UMA."))</code></pre>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" alt="Hardware Processor Architecture" class="w-full">
+            </div>
+            <p class="image-caption">Fig 2. Macro-level hardware architecture required for high-throughput localized inference.</p>
+
+            <h2 id="conclusion">4.0 // Scale Locally, Deploy Globally</h2>
+            <p>The SLM is the ultimate tool for the modern technical architect. As we move further into the late 2020s, the reliance on massive, centralized cloud APIs will be seen as a bottleneck for innovation. Prototype with localized intelligence, optimize on your desk, and deploy globally. Decipher the Aether. System Stable // 2026.</p>
+
+            <div class="mt-24 pt-16 border-t border-gray-900">
+                <div class="glass-card p-12 rounded-[3.5rem] flex flex-col sm:flex-row items-center gap-12 group">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Author" class="w-32 h-32 rounded-[2rem] border-2 border-orange-500/30 object-cover rotate-3 group-hover:rotate-0 transition-transform duration-500 shadow-2xl">
+                    <div class="text-center sm:text-left">
+                        <h4 class="text-white font-black text-4xl uppercase italic tracking-tighter">Yash Raj <span class="text-orange-500">Dwivedi</span></h4>
+                        <p class="text-xs font-black tracking-[0.4em] text-orange-400 uppercase mb-5 mt-2">B.Tech AI & DS // VIPS</p>
+                        <p class="text-sm text-gray-400 font-light leading-relaxed">Analyzing the intersection of localized infrastructure and high-performance frontend architecture. Currently building AetherTech.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-24 pt-20 border-t border-gray-900">
+                <h3 class="text-3xl font-black text-white mb-12 flex items-center gap-5 tracking-tighter"><i data-lucide="message-square" class="text-orange-500 w-8 h-8"></i> Community Logs (3)</h3>
+                <div class="space-y-10">
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center font-black text-white text-xs">AC</div>
+                            <div><p class="text-white font-bold text-base">Aria Chen</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 21, 2026</p></div>
+                        </div>
+                        <p class="text-gray-400 text-sm">"The explanation of Knowledge Distillation is the best I've seen. People often think SLMs are just 'dumber' versions of LLMs, but they are actually 'smarter' for their size."</p>
+                    </div>
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-orange-600 flex items-center justify-center font-black text-white text-xs">VS</div>
+                            <div><p class="text-white font-bold text-base">Vikram Singh</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 22, 2026</p></div>
+                        </div>
+                        <p class="text-gray-400 text-sm">"I'm training a custom SLM for drones right now. Quantization to 4-bit was the only way to get a reasoning loop running on a mobile processor. Great transmission."</p>
+                    </div>
+                    <div class="glass-card p-10 rounded-[2.5rem]">
+                        <div class="flex items-center gap-5 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center font-black text-white text-xs">DV</div>
+                            <div><p class="text-white font-bold text-base">Devin V.</p><p class="text-[10px] font-black text-gray-700 uppercase tracking-widest">March 23, 2026</p></div>
+                        </div>
+                        <p class="text-gray-400 text-sm">"Using llama-cpp-python for the code snippet is a pro move. It's much lighter than using full Transformers libraries for local work. Excellent technical choice."</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <aside class="hidden lg:block lg:col-span-3"></aside>
+    </main>
+
+    <footer class="py-24 border-t border-gray-900 px-6 bg-[#020617]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-20">
+            <div class="col-span-1 flex flex-col items-center md:items-start">
+                <div class="flex items-center gap-4 mb-10">
+                    <img src="https://i.ibb.co/WW5S09TJ/Untitled-design.jpg" alt="Logo" class="w-10 h-10 rounded-xl grayscale group-hover:grayscale-0 transition-all duration-700">
+                    <span class="text-xl font-bold tracking-tighter uppercase italic text-white">Aether<span class="text-orange-500">Tech</span></span>
+                </div>
+                <p class="text-gray-600 text-[10px] font-black uppercase tracking-[0.3em] leading-loose">Decipher the Aether. <br> System Stable // 2026.</p>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Transmissions</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="article-1.html" class="hover:text-orange-500 transition">GitHub Pages</a>
+                    <a href="article-2.html" class="hover:text-orange-500 transition">Hardware DS</a>
+                    <a href="article-5.html" class="text-orange-500">SLM Efficiency</a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">Registry</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="privacy.html" class="hover:text-white transition">Privacy</a>
+                    <a href="terms.html" class="hover:text-white transition">Terms</a>
+                    <a href="sitemap.html" class="hover:text-white transition">Sitemap</a>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h5 class="text-[10px] font-black uppercase tracking-[0.5em] text-white">System</h5>
+                <div class="flex flex-col gap-6 text-[11px] font-black uppercase tracking-[0.2em] text-gray-500">
+                    <a href="contact.html" class="hover:text-white transition">Contact Portal</a>
+                    <a href="index.html" class="hover:text-white transition">Core Feed</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+        gsap.from(".hero-anim", { opacity: 0, y: 100, duration: 2, ease: "expo.out" });
+        gsap.from(".sidebar-anim", { opacity: 0, x: -80, duration: 1.5, delay: 0.8, ease: "power4.out" });
+        gsap.from(".content-anim", { opacity: 0, y: 120, duration: 1.5, delay: 1, ease: "power4.out" });
+    </script>
+</body>
+</html>
