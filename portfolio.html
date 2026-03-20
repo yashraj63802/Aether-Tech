@@ -95,10 +95,27 @@
                 </div>
             </div>
 
-            <div class="glass-card rounded-3xl p-8 border border-dashed border-gray-800 flex flex-col items-center justify-center text-center opacity-50 project-card min-h-[400px]">
-                <i data-lucide="terminal-square" class="w-12 h-12 text-gray-700 mb-4"></i>
-                <h3 class="text-xl font-bold uppercase italic text-gray-500">Initializing Next Node...</h3>
-                <p class="text-gray-600 text-xs mt-2 uppercase tracking-widest">Compiling Data Systems project</p>
+            <div class="glass-card rounded-3xl overflow-hidden border border-gray-800 hover:border-orange-500/30 transition-colors group project-card">
+                <div class="aspect-video bg-[#020617] relative overflow-hidden flex items-center justify-center border-b border-gray-800">
+                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ea580c 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    <i data-lucide="cpu" class="w-24 h-24 text-gray-700 group-hover:text-orange-500 transition-colors duration-700 z-10"></i>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#020617] to-transparent"></div>
+                </div>
+                <div class="p-8">
+                    <div class="flex gap-2 mb-4">
+                        <span class="px-2 py-1 rounded-md border border-orange-500/30 bg-orange-500/10 text-orange-400 text-[10px] font-bold">LOW-LEVEL LOGIC</span>
+                        <span class="px-2 py-1 rounded-md border border-gray-700 bg-white/5 text-gray-400 text-[10px] font-bold">C / MEMORY MGT</span>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-3 uppercase italic">Neural Matrix Core</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        A dynamic matrix math engine built in C. Demonstrates manual memory allocation (`malloc`/`free`) and foundational dot-product calculations used in neural network forward passes.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://yashraj63802.github.io/neural-matric-c/" target="_blank" class="text-gray-500 font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-white transition-all">
+                            View Source <i data-lucide="github" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
 
         </div>
